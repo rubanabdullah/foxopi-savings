@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0,
+    maximum-scale=1.0, user-scalable=no"
+>
 
 <title>FOXOPI</title>
 
@@ -12,343 +17,516 @@
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b1019;
+    background: #0b1119;
     color: white;
 }
 
 .app {
-    max-width: 460px;
-    min-height: 100vh;
+    max-width: 480px;
     margin: auto;
-    padding: 16px;
+    min-height: 100vh;
+    padding-bottom: 95px;
 }
 
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
 
-.top-bar {
+.top {
     display: flex;
     justify-content: space-between;
+    padding: 16px;
     gap: 10px;
 }
 
-.top-box {
-    background: #182131;
-    padding: 12px 14px;
-    border-radius: 16px;
-    min-width: 145px;
+.balance-card,
+.coin-card {
+    background: #171e29;
+    border-radius: 15px;
+    padding: 11px 14px;
 }
 
-.top-label {
-    font-size: 11px;
-    color: #94a3b8;
+.balance-card {
+    flex: 1;
 }
 
-.top-value {
+.coin-card {
+    min-width: 120px;
+    text-align: right;
+}
+
+.mini-label {
+    font-size: 10px;
+    color: #8f9bad;
+}
+
+.mini-value {
+    font-size: 19px;
+    font-weight: bold;
     margin-top: 4px;
-    font-weight: bold;
-    font-size: 18px;
 }
 
 
-/* HEADER */
+/* =========================
+   PAGES
+========================= */
 
-.header {
+.page {
+    display: none;
+    padding: 0 16px 20px;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* =========================
+   GAME
+========================= */
+
+.game-header {
     text-align: center;
-    margin-top: 22px;
+    margin-top: 5px;
 }
 
-.title {
-    font-size: 27px;
+.game-title {
+    font-size: 25px;
     font-weight: bold;
 }
 
-.subtitle {
-    margin-top: 5px;
-    color: #94a3b8;
+.game-subtitle {
+    color: #8995a7;
     font-size: 13px;
+    margin-top: 5px;
 }
 
-
-/* FOX */
 
 .fox-area {
     text-align: center;
-    margin: 25px 0 20px;
+    margin-top: 35px;
 }
 
-.fox {
-    width: 180px;
-    height: 180px;
+.fox-circle {
+    width: 210px;
+    height: 210px;
+
     margin: auto;
+
+    border-radius: 50%;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 110px;
+    font-size: 125px;
 
-    background: #182131;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    user-select: none;
+    background:
+        radial-gradient(
+            circle,
+            #253144,
+            #151d29
+        );
 
     box-shadow:
-        0 0 35px rgba(245, 158, 11, 0.18);
+        0 0 45px rgba(255, 161, 22, 0.16);
 
-    transition: transform 0.08s;
+    user-select: none;
 }
 
-.fox:active {
-    transform: scale(0.92);
+.fox-circle.unlocked {
+    cursor: pointer;
 }
 
-.tap-text {
-    margin-top: 12px;
-    color: #fbbf24;
+.fox-circle:active {
+    transform: scale(.96);
+}
+
+.tap-status {
+    margin-top: 15px;
     font-weight: bold;
 }
 
-.tap-info {
-    color: #94a3b8;
+.locked-text {
+    color: #f59e0b;
+}
+
+.unlocked-text {
+    color: #22c55e;
+}
+
+.condition {
+    color: #8f9bad;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 7px;
 }
 
 
-/* PLAN */
+/* =========================
+   CARDS
+========================= */
 
-.plan-card {
-    background: #182131;
-    border-radius: 20px;
+.card {
+    background: #171e29;
+    border-radius: 18px;
     padding: 18px;
-    margin-top: 16px;
+    margin-top: 18px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 14px;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
     margin: 12px 0;
+    gap: 15px;
+}
+
+.muted {
+    color: #8995a7;
 }
 
 .green {
     color: #22c55e;
+}
+
+.yellow {
+    color: #fbbf24;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    border: 0;
+    border-radius: 13px;
+
+    padding: 14px;
+
+    color: white;
+    font-size: 15px;
     font-weight: bold;
+
+    cursor: pointer;
+}
+
+.full-button {
+    width: 100%;
+    margin-top: 12px;
 }
 
 .blue {
-    color: #60a5fa;
-    font-weight: bold;
+    background: #2563eb;
+}
+
+.orange {
+    background: #e98a14;
+}
+
+.red {
+    background: #dc4242;
+}
+
+.purple {
+    background: #7c4de8;
 }
 
 
-/* BUTTONS */
+/* =========================
+   SPIN GAME
+========================= */
 
-.menu {
+.spin-display {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    font-size: 45px;
+
+    background: #0d141f;
+
+    padding: 20px;
+
+    border-radius: 15px;
+}
+
+.spin-info {
+    color: #8995a7;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+
+/* =========================
+   WALLET
+========================= */
+
+.wallet-tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 11px;
-    margin-top: 18px;
+    gap: 10px;
+
+    margin-top: 15px;
 }
 
-button {
-    border: none;
-    border-radius: 15px;
-    padding: 16px 8px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
+.wallet-tab {
+    background: #222c3a;
 }
 
-.deposit-btn {
-    background: #22c55e;
+.wallet-tab.active {
+    background: #2563eb;
 }
 
-.withdraw-btn {
-    background: #ef4444;
-}
-
-.coin-btn {
-    background: #f59e0b;
-}
-
-.referral-btn {
-    background: #8b5cf6;
-}
-
-.projection-btn {
-    background: #3b82f6;
-}
-
-.history-btn {
-    background: #475569;
-}
-
-
-/* SECTIONS */
-
-.section {
+.wallet-content {
     display: none;
-    margin-top: 18px;
-    padding: 20px;
-    background: #182131;
-    border-radius: 20px;
 }
 
-.section h3 {
-    margin-top: 0;
+.wallet-content.active {
+    display: block;
 }
 
+.address-box {
+    background: #0d141f;
 
-/* INPUT */
+    padding: 15px;
+
+    border-radius: 13px;
+
+    font-size: 12px;
+
+    overflow-wrap: anywhere;
+
+    margin-top: 12px;
+}
+
+.copy {
+    margin-top: 10px;
+    width: 100%;
+    background: #344054;
+}
+
 
 input {
     width: 100%;
-    padding: 14px;
-    margin-top: 10px;
 
-    border: none;
-    outline: none;
+    padding: 14px;
 
     border-radius: 12px;
+    border: none;
+
+    outline: none;
+
+    margin-top: 12px;
 
     font-size: 16px;
 }
 
 
-/* ADDRESS */
+.status-box {
+    margin-top: 13px;
 
-.address-box {
-    background: #0e1624;
-    padding: 15px;
-    border-radius: 13px;
-    margin-top: 12px;
+    padding: 13px;
 
-    overflow-wrap: anywhere;
+    border-radius: 12px;
+
+    background: #0d141f;
 }
-
-.small {
-    color: #94a3b8;
-    font-size: 12px;
-}
-
-.address {
-    margin-top: 7px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-
-/* ACTION */
-
-.action-btn {
-    width: 100%;
-    background: #2563eb;
-    margin-top: 12px;
-}
-
-
-/* COINS */
-
-.coin-big {
-    text-align: center;
-    font-size: 35px;
-    margin: 20px 0 5px;
-    font-weight: bold;
-    color: #fbbf24;
-}
-
-.conversion {
-    background: #0e1624;
-    padding: 17px;
-    border-radius: 14px;
-    text-align: center;
-    margin-top: 15px;
-}
-
-
-/* WITHDRAW LOCK */
-
-.lock {
-    background: #0e1624;
-    border-radius: 13px;
-    padding: 14px;
-    margin-top: 12px;
-    color: #fbbf24;
-}
-
-
-/* PENDING */
 
 .pending {
-    padding: 14px;
-    background: #422006;
     color: #fbbf24;
-    border-radius: 13px;
-    margin-top: 14px;
+}
+
+.approved {
+    color: #22c55e;
+}
+
+.rejected {
+    color: #ef4444;
 }
 
 
-/* HISTORY */
+/* =========================
+   PROFILE
+========================= */
+
+.profile-top {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.avatar {
+    width: 78px;
+    height: 78px;
+
+    margin: auto;
+
+    background: #232d3c;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 36px;
+}
+
+.profile-name {
+    margin-top: 12px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.profile-username {
+    color: #8995a7;
+    margin-top: 4px;
+}
+
+
+/* =========================
+   HISTORY
+========================= */
 
 .history-item {
+    border-bottom: 1px solid #303a49;
     padding: 12px 0;
-    border-bottom: 1px solid #334155;
+}
+
+.history-top {
+    display: flex;
+    justify-content: space-between;
 }
 
 .history-date {
-    color: #94a3b8;
     font-size: 11px;
+    color: #7f8b9c;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    max-width: 480px;
+    width: 100%;
+
+    height: 78px;
+
+    background: #171717;
+
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #777;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+.nav-item.active {
+    color: white;
+}
+
+.nav-item.active::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: #f59e0b;
+}
+
+.nav-icon {
+    font-size: 25px;
+}
+
+.nav-label {
+    font-size: 13px;
     margin-top: 4px;
+}
+
+
+/* =========================
+   FLOAT COIN
+========================= */
+
+.floatCoin {
+    position: fixed;
+
+    color: #fbbf24;
+
+    font-weight: bold;
+
+    pointer-events: none;
+
+    animation:
+        floatUp .7s forwards;
+}
+
+@keyframes floatUp {
+
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
 }
 
 
 /* NOTICE */
 
 .notice {
-    color: #64748b;
+    color: #657184;
+
+    font-size: 10px;
+
     text-align: center;
-    font-size: 11px;
-    line-height: 1.5;
-    padding: 25px 12px;
-}
 
-
-/* FLOAT EFFECT */
-
-.float-coin {
-    position: fixed;
-    pointer-events: none;
-
-    font-size: 20px;
-    font-weight: bold;
-
-    color: #fbbf24;
-
-    animation: floatUp 0.8s forwards;
-}
-
-@keyframes floatUp {
-
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    to {
-        opacity: 0;
-        transform: translateY(-80px);
-    }
-
+    padding: 20px 10px;
 }
 
 </style>
@@ -360,19 +538,21 @@ input {
 <div class="app">
 
 
-<!-- TOP BALANCE -->
+<!-- =========================
+     TOP BALANCE
+========================= -->
 
-<div class="top-bar">
+<div class="top">
 
-    <div class="top-box">
+    <div class="balance-card">
 
-        <div class="top-label">
+        <div class="mini-label">
             BALANCE
         </div>
 
         <div
-            class="top-value"
-            id="balance"
+            class="mini-value"
+            id="topBalance"
         >
             $0.00
         </div>
@@ -380,18 +560,15 @@ input {
     </div>
 
 
-    <div
-        class="top-box"
-        onclick="showSection('coinSection')"
-    >
+    <div class="coin-card">
 
-        <div class="top-label">
+        <div class="mini-label">
             🪙 COINS
         </div>
 
         <div
-            class="top-value"
-            id="coinTop"
+            class="mini-value"
+            id="topCoins"
         >
             0
         </div>
@@ -402,430 +579,456 @@ input {
 
 
 
-<!-- HEADER -->
-
-<div class="header">
-
-    <div class="title">
-        FOXOPI
-    </div>
-
-    <div class="subtitle">
-        Savings Simulator
-    </div>
-
-</div>
-
-
-
-<!-- FOX -->
-
-<div class="fox-area">
-
-    <div
-        class="fox"
-        id="fox"
-        onclick="tapFox(event)"
-    >
-        🦊
-    </div>
-
-    <div class="tap-text">
-        TAP FOX
-    </div>
-
-    <div class="tap-info">
-        +1,000 coins per tap
-    </div>
-
-</div>
-
-
-
-<!-- PLAN -->
-
-<div class="plan-card">
-
-    <div class="row">
-
-        <span>
-            Plan Duration
-        </span>
-
-        <span class="blue">
-            3 Months
-        </span>
-
-    </div>
-
-
-    <div class="row">
-
-        <span>
-            Maximum Projection
-        </span>
-
-        <span class="green">
-            Up to 90%
-        </span>
-
-    </div>
-
-
-    <div class="row">
-
-        <span>
-            Projected Balance
-        </span>
-
-        <span
-            class="green"
-            id="projectedBalance"
-        >
-            $0.00
-        </span>
-
-    </div>
-
-</div>
-
-
-
-<!-- MAIN MENU -->
-
-<div class="menu">
-
-    <button
-        class="deposit-btn"
-        onclick="showSection('depositSection')"
-    >
-        ➕ Deposit
-    </button>
-
-
-    <button
-        class="withdraw-btn"
-        onclick="showWithdraw()"
-    >
-        ➖ Withdraw
-    </button>
-
-
-    <button
-        class="coin-btn"
-        onclick="showSection('coinSection')"
-    >
-        🪙 Coins
-    </button>
-
-
-    <button
-        class="referral-btn"
-        onclick="showSection('referralSection')"
-    >
-        👥 Refer
-    </button>
-
-
-    <button
-        class="projection-btn"
-        onclick="showProjection()"
-    >
-        📈 Projection
-    </button>
-
-
-    <button
-        class="history-btn"
-        onclick="showHistory()"
-    >
-        📜 History
-    </button>
-
-</div>
-
-
-
-<!-- DEPOSIT -->
+<!-- ==================================
+     PAGE 1 : GAME
+================================== -->
 
 <div
-    id="depositSection"
-    class="section"
+    id="gamePage"
+    class="page active"
 >
 
-    <h3>
-        ➕ Deposit
-    </h3>
+    <div class="game-header">
 
-    <div class="small">
-        ADDRESS
+        <div class="game-title">
+            🦊 FOXOPI
+        </div>
+
+        <div class="game-subtitle">
+            Game Center
+        </div>
+
     </div>
 
 
-    <div class="address-box">
+    <div class="fox-area">
 
-        <div class="address">
+        <div
+            id="fox"
+            class="fox-circle"
+            onclick="tapFox(event)"
+        >
+            🦊
+        </div>
 
+
+        <div
+            id="tapStatus"
+            class="tap-status locked-text"
+        >
+            🔒 Tap Locked
+        </div>
+
+
+        <div class="condition">
+            Tap unlocks after an approved $100 deposit.
+        </div>
+
+    </div>
+
+
+
+    <!-- SPIN -->
+
+    <div class="card">
+
+        <div class="card-title">
+            🎡 Coin Spin
+        </div>
+
+
+        <div class="spin-display">
+
+            <span id="slot1">
+                🦊
+            </span>
+
+            <span id="slot2">
+                🪙
+            </span>
+
+            <span id="slot3">
+                ⭐
+            </span>
+
+        </div>
+
+
+        <div class="spin-info">
+
+            Uses game coins only.
+
+            <br>
+
+            Coins cannot be withdrawn
+            or exchanged for real money.
+
+        </div>
+
+
+        <button
+            class="full-button orange"
+            onclick="spinGame()"
+        >
+            🎡 Spin — 10 Coins
+        </button>
+
+
+        <div
+            id="spinResult"
+            class="condition"
+            style="text-align:center;"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================
+     PAGE 2 : WALLET
+================================== -->
+
+<div
+    id="walletPage"
+    class="page"
+>
+
+    <div class="card-title">
+        💳 Wallet
+    </div>
+
+
+    <div class="wallet-tabs">
+
+        <button
+            id="depositTab"
+            class="wallet-tab active"
+            onclick="openWallet('deposit')"
+        >
+            Deposit
+        </button>
+
+
+        <button
+            id="withdrawTab"
+            class="wallet-tab"
+            onclick="openWallet('withdraw')"
+        >
+            Withdraw
+        </button>
+
+    </div>
+
+
+
+    <!-- DEPOSIT -->
+
+    <div
+        id="depositContent"
+        class="wallet-content active"
+    >
+
+        <div class="card">
+
+            <div class="card-title">
+                Deposit
+            </div>
+
+
+            <div class="muted">
+                Address
+            </div>
+
+
+            <div
+                class="address-box"
+                id="depositAddress"
+            >
 UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
+            </div>
+
+
+            <button
+                class="copy"
+                onclick="copyAddress()"
+            >
+                📋 Copy Address
+            </button>
+
+
+            <input
+                id="depositAmount"
+                type="number"
+                placeholder="Amount"
+            >
+
+
+            <button
+                class="full-button blue"
+                onclick="submitDeposit()"
+            >
+                Submit Deposit Request
+            </button>
+
+
+            <div
+                id="depositMessage"
+            ></div>
+
+
+            <div class="condition">
+
+                Balance will not change until
+                the request is approved.
+
+            </div>
 
         </div>
 
     </div>
 
 
-    <input
-        id="depositAmount"
-        type="number"
-        placeholder="Enter amount"
+
+    <!-- WITHDRAW -->
+
+    <div
+        id="withdrawContent"
+        class="wallet-content"
     >
 
+        <div class="card">
 
-    <button
-        class="action-btn"
-        onclick="addDeposit()"
-    >
-        Submit
-    </button>
+            <div class="card-title">
+                Withdraw
+            </div>
+
+
+            <div class="status-box">
+
+                🔒 Withdrawal unlock date:
+
+                <strong>
+                    01/01/2027
+                </strong>
+
+            </div>
+
+
+            <input
+                id="withdrawAccount"
+                type="text"
+                placeholder="Tonkeeper ID"
+            >
+
+
+            <input
+                id="withdrawAmount"
+                type="number"
+                placeholder="Amount"
+            >
+
+
+            <button
+                id="withdrawButton"
+                class="full-button red"
+                onclick="submitWithdraw()"
+            >
+                Submit Withdrawal
+            </button>
+
+
+            <div
+                id="withdrawMessage"
+            ></div>
+
+        </div>
+
+    </div>
 
 </div>
 
 
 
-<!-- WITHDRAW -->
+<!-- ==================================
+     PAGE 3 : PROFILE
+================================== -->
 
 <div
-    id="withdrawSection"
-    class="section"
+    id="profilePage"
+    class="page"
 >
 
-    <h3>
-        ➖ Withdraw
-    </h3>
+    <div class="profile-top">
+
+        <div class="avatar">
+            👤
+        </div>
 
 
-    <div class="lock">
+        <div
+            id="profileName"
+            class="profile-name"
+        >
+            FOXOPI User
+        </div>
 
-        🔒 Withdrawal available from
 
-        <strong>
-            01/01/2027
-        </strong>
+        <div
+            id="profileUsername"
+            class="profile-username"
+        >
+            @username
+        </div>
 
     </div>
 
 
-    <input
-        id="tonkeeperId"
-        type="text"
-        placeholder="Enter Tonkeeper ID"
-    >
+
+    <div class="card">
+
+        <div class="row">
+
+            <span class="muted">
+                Telegram ID
+            </span>
+
+            <strong id="profileId">
+                -
+            </strong>
+
+        </div>
 
 
-    <input
-        id="withdrawAmount"
-        type="number"
-        placeholder="Withdrawal amount"
-    >
+        <div class="row">
+
+            <span class="muted">
+                Balance
+            </span>
+
+            <strong id="profileBalance">
+                $0.00
+            </strong>
+
+        </div>
 
 
-    <button
-        id="withdrawSubmit"
-        class="action-btn"
-        onclick="submitWithdrawal()"
-    >
-        Submit Withdrawal
-    </button>
+        <div class="row">
+
+            <span class="muted">
+                Coins
+            </span>
+
+            <strong id="profileCoins">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="row">
+
+            <span class="muted">
+                Approved Deposit
+            </span>
+
+            <strong id="approvedDeposit">
+                $0.00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-title">
+            📜 Account History
+        </div>
+
+        <div id="historyList">
+            No activity yet.
+        </div>
+
+    </div>
+
+
+    <div class="notice">
+
+        Game coins are entertainment-only
+        and cannot be exchanged for cash
+        or cryptocurrency.
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================
+     BOTTOM NAVIGATION
+================================== -->
+
+<div class="bottom-nav">
 
 
     <div
-        id="withdrawMessage"
-    ></div>
+        id="navGame"
+        class="nav-item active"
+        onclick="openPage('game')"
+    >
 
-</div>
+        <div class="nav-icon">
+            ▦
+        </div>
 
+        <div class="nav-label">
+            Game
+        </div>
 
+    </div>
 
-<!-- COINS -->
-
-<div
-    id="coinSection"
-    class="section"
->
-
-    <h3>
-        🪙 FOXOPI Coins
-    </h3>
 
 
     <div
-        class="coin-big"
-        id="coinSectionAmount"
+        id="navWallet"
+        class="nav-item"
+        onclick="openPage('wallet')"
     >
-        0
-    </div>
 
-
-    <div class="conversion">
-
-        <strong>
-            1,000,000 Coins
-        </strong>
-
-        <br><br>
-
-        =
-
-        <br><br>
-
-        <strong>
-            $100 Simulation Credit
-        </strong>
-
-    </div>
-
-
-    <button
-        class="action-btn"
-        onclick="convertCoins()"
-    >
-        Convert 1,000,000 Coins
-    </button>
-
-</div>
-
-
-
-<!-- REFERRAL -->
-
-<div
-    id="referralSection"
-    class="section"
->
-
-    <h3>
-        👥 Refer Friends
-    </h3>
-
-
-    <p>
-
-        Invite a friend and receive
-
-        <strong>
-            $100 referral simulation bonus
-        </strong>.
-
-    </p>
-
-
-    <button
-        class="action-btn"
-        onclick="inviteFriend()"
-    >
-        📤 Invite Friend
-    </button>
-
-
-    <button
-        class="action-btn"
-        onclick="claimReferralTest()"
-    >
-        🎁 Claim Referral Test Bonus
-    </button>
-
-
-    <p class="small">
-
-        GitHub Pages cannot verify whether
-        another person actually joined.
-        The claim button is therefore only
-        a local simulation.
-
-    </p>
-
-</div>
-
-
-
-<!-- PROJECTION -->
-
-<div
-    id="projectionSection"
-    class="section"
->
-
-    <h3>
-        📈 3 Month Projection
-    </h3>
-
-
-    <div class="conversion">
-
-        Current Balance
-
-        <div
-            class="coin-big"
-            id="projectionCurrent"
-        >
-            $0.00
+        <div class="nav-icon">
+            ◉
         </div>
 
-
-        Maximum simulation projection
-
-        <div
-            class="coin-big"
-            id="projectionFuture"
-        >
-            $0.00
-        </div>
-
-
-        <div class="small">
-            Based on up to 90% growth over 3 months.
+        <div class="nav-label">
+            Wallet
         </div>
 
     </div>
 
-</div>
 
 
+    <div
+        id="navProfile"
+        class="nav-item"
+        onclick="openPage('profile')"
+    >
 
-<!-- HISTORY -->
+        <div class="nav-icon">
+            ♙
+        </div>
 
-<div
-    id="historySection"
-    class="section"
->
+        <div class="nav-label">
+            Profile
+        </div>
 
-    <h3>
-        📜 History
-    </h3>
-
-    <div id="historyList">
-        No activity yet.
     </div>
 
-</div>
-
-
-
-<div class="notice">
-
-    FOXOPI is configured here as a simulation interface.
-
-    <br>
-
-    No real cryptocurrency or money is sent,
-    received or withdrawn by this web page.
-
-    <br>
-
-    The 90% figure is a simulation projection,
-    not a guaranteed financial return.
 
 </div>
-
 
 </div>
 
@@ -833,35 +1036,50 @@ UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
 
 <script>
 
-/* ===============================
-   SETTINGS
-================================ */
+
+/* ==================================
+   CONFIG
+================================== */
 
 const BOT_USERNAME =
     "Foxopi_bot";
 
-const TAP_REWARD =
-    1000;
 
-const COINS_FOR_100 =
-    1000000;
+const DEPOSIT_ADDRESS =
+    "UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge";
 
-const CREDIT_FOR_COINS =
-    100;
 
-const REFERRAL_BONUS =
-    100;
-
-const WITHDRAW_UNLOCK =
+const WITHDRAW_DATE =
     new Date(
         "2027-01-01T00:00:00"
     );
 
 
+const TAP_UNLOCK_DEPOSIT =
+    100;
 
-/* ===============================
-   TELEGRAM
-================================ */
+
+/*
+IMPORTANT:
+
+Game coins stay separate from
+the wallet balance.
+
+No cash conversion.
+*/
+
+const TAP_REWARD =
+    1;
+
+
+const SPIN_COST =
+    10;
+
+
+
+/* ==================================
+   TELEGRAM USER
+================================== */
 
 const tg =
     window.Telegram &&
@@ -880,14 +1098,51 @@ if (tg) {
 
 
 
-/* ===============================
-   DATA
-================================ */
+let telegramUser = null;
+
+
+if (
+    tg &&
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user
+) {
+
+    telegramUser =
+        tg.initDataUnsafe.user;
+
+}
+
+
+
+/*
+Each Telegram user gets
+different local storage keys.
+*/
+
+const USER_ID =
+    telegramUser
+        ? String(
+            telegramUser.id
+        )
+        : "guest";
+
+
+const STORAGE_PREFIX =
+    "foxopi_" +
+    USER_ID +
+    "_";
+
+
+
+/* ==================================
+   LOCAL DATA
+================================== */
 
 let balance =
     Number(
         localStorage.getItem(
-            "foxopiBalance"
+            STORAGE_PREFIX +
+            "balance"
         )
     ) || 0;
 
@@ -895,41 +1150,100 @@ let balance =
 let coins =
     Number(
         localStorage.getItem(
-            "foxopiCoins"
+            STORAGE_PREFIX +
+            "coins"
         )
     ) || 0;
+
+
+let approvedDepositTotal =
+    Number(
+        localStorage.getItem(
+            STORAGE_PREFIX +
+            "approvedDeposit"
+        )
+    ) || 0;
+
+
+let depositRequests =
+    JSON.parse(
+        localStorage.getItem(
+            STORAGE_PREFIX +
+            "depositRequests"
+        )
+    ) || [];
+
+
+let withdrawRequests =
+    JSON.parse(
+        localStorage.getItem(
+            STORAGE_PREFIX +
+            "withdrawRequests"
+        )
+    ) || [];
 
 
 let history =
     JSON.parse(
         localStorage.getItem(
-            "foxopiHistory"
+            STORAGE_PREFIX +
+            "history"
         )
     ) || [];
 
 
 
-/* ===============================
-   SAVE / UPDATE
-================================ */
+/* ==================================
+   SAVE
+================================== */
 
-function saveData() {
+function saveAll() {
 
     localStorage.setItem(
-        "foxopiBalance",
+        STORAGE_PREFIX +
+        "balance",
         balance
     );
 
 
     localStorage.setItem(
-        "foxopiCoins",
+        STORAGE_PREFIX +
+        "coins",
         coins
     );
 
 
     localStorage.setItem(
-        "foxopiHistory",
-        JSON.stringify(history)
+        STORAGE_PREFIX +
+        "approvedDeposit",
+        approvedDepositTotal
+    );
+
+
+    localStorage.setItem(
+        STORAGE_PREFIX +
+        "depositRequests",
+        JSON.stringify(
+            depositRequests
+        )
+    );
+
+
+    localStorage.setItem(
+        STORAGE_PREFIX +
+        "withdrawRequests",
+        JSON.stringify(
+            withdrawRequests
+        )
+    );
+
+
+    localStorage.setItem(
+        STORAGE_PREFIX +
+        "history",
+        JSON.stringify(
+            history
+        )
     );
 
 
@@ -939,20 +1253,44 @@ function saveData() {
 
 
 
+/* ==================================
+   UI UPDATE
+================================== */
+
 function updateUI() {
 
+    const balanceText =
+        "$" +
+        balance.toFixed(2);
+
+
     document
         .getElementById(
-            "balance"
+            "topBalance"
         )
         .innerText =
-            "$" +
-            balance.toFixed(2);
+            balanceText;
 
 
     document
         .getElementById(
-            "coinTop"
+            "topCoins"
+        )
+        .innerText =
+            coins.toLocaleString();
+
+
+    document
+        .getElementById(
+            "profileBalance"
+        )
+        .innerText =
+            balanceText;
+
+
+    document
+        .getElementById(
+            "profileCoins"
         )
         .innerText =
             coins.toLocaleString();
@@ -960,155 +1298,354 @@ function updateUI() {
 
     document
         .getElementById(
-            "coinSectionAmount"
-        )
-        .innerText =
-            coins.toLocaleString();
-
-
-    const projected =
-        balance * 1.90;
-
-
-    document
-        .getElementById(
-            "projectedBalance"
+            "approvedDeposit"
         )
         .innerText =
             "$" +
-            projected.toFixed(2);
+            approvedDepositTotal
+                .toFixed(2);
+
+
+    updateTapStatus();
+
+    updateProfile();
+
+    renderHistory();
+
+    updateWithdrawLock();
 
 }
 
 
 
-/* ===============================
-   SECTIONS
-================================ */
+/* ==================================
+   PROFILE
+================================== */
 
-function hideSections() {
+function updateProfile() {
 
-    const ids = [
+    if (!telegramUser) {
 
-        "depositSection",
-
-        "withdrawSection",
-
-        "coinSection",
-
-        "referralSection",
-
-        "projectionSection",
-
-        "historySection"
-
-    ];
+        document
+            .getElementById(
+                "profileName"
+            )
+            .innerText =
+                "FOXOPI User";
 
 
-    ids.forEach(
+        document
+            .getElementById(
+                "profileUsername"
+            )
+            .innerText =
+                "Open inside Telegram";
+
+
+        document
+            .getElementById(
+                "profileId"
+            )
+            .innerText =
+                "Guest";
+
+
+        return;
+
+    }
+
+
+    const name =
+
+        (
+            telegramUser.first_name ||
+            ""
+        ) +
+
+        (
+            telegramUser.last_name
+                ? " " +
+                  telegramUser.last_name
+                : ""
+        );
+
+
+    document
+        .getElementById(
+            "profileName"
+        )
+        .innerText =
+            name;
+
+
+    document
+        .getElementById(
+            "profileUsername"
+        )
+        .innerText =
+
+            telegramUser.username
+                ? "@" +
+                  telegramUser.username
+                : "No username";
+
+
+    document
+        .getElementById(
+            "profileId"
+        )
+        .innerText =
+            telegramUser.id;
+
+}
+
+
+
+/* ==================================
+   NAVIGATION
+================================== */
+
+function openPage(page) {
+
+    const pages = {
+
+        game:
+            "gamePage",
+
+        wallet:
+            "walletPage",
+
+        profile:
+            "profilePage"
+
+    };
+
+
+    Object.values(
+        pages
+    )
+    .forEach(
         function(id) {
 
             document
                 .getElementById(id)
-                .style.display =
-                    "none";
+                .classList
+                .remove(
+                    "active"
+                );
 
         }
     );
 
-}
 
-
-
-function showSection(id) {
-
-    hideSections();
+    document
+        .getElementById(
+            pages[page]
+        )
+        .classList
+        .add(
+            "active"
+        );
 
 
     document
-        .getElementById(id)
-        .style.display =
-            "block";
+        .querySelectorAll(
+            ".nav-item"
+        )
+        .forEach(
+            function(item) {
 
-}
+                item
+                    .classList
+                    .remove(
+                        "active"
+                    );
 
-
-
-/* ===============================
-   FOX TAP
-================================ */
-
-function tapFox(event) {
-
-    coins +=
-        TAP_REWARD;
-
-
-    showFloatingReward(
-        event
-    );
-
-
-    saveData();
-
-}
-
-
-
-function showFloatingReward(
-    event
-) {
-
-    const element =
-        document.createElement(
-            "div"
+            }
         );
 
 
-    element.className =
-        "float-coin";
+    if (
+        page ===
+        "game"
+    ) {
+
+        document
+            .getElementById(
+                "navGame"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+    }
 
 
-    element.innerText =
-        "+" +
-        TAP_REWARD.toLocaleString() +
-        " 🪙";
+    if (
+        page ===
+        "wallet"
+    ) {
+
+        document
+            .getElementById(
+                "navWallet"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+    }
 
 
-    element.style.left =
-        event.clientX +
-        "px";
+    if (
+        page ===
+        "profile"
+    ) {
 
+        document
+            .getElementById(
+                "navProfile"
+            )
+            .classList
+            .add(
+                "active"
+            );
 
-    element.style.top =
-        event.clientY +
-        "px";
-
-
-    document.body
-        .appendChild(
-            element
-        );
-
-
-    setTimeout(
-        function() {
-
-            element.remove();
-
-        },
-        800
-    );
+    }
 
 }
 
 
 
-/* ===============================
-   DEPOSIT RECORD
-================================ */
+/* ==================================
+   WALLET TABS
+================================== */
 
-function addDeposit() {
+function openWallet(type) {
+
+    document
+        .getElementById(
+            "depositContent"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+
+    document
+        .getElementById(
+            "withdrawContent"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+
+    document
+        .getElementById(
+            "depositTab"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+
+    document
+        .getElementById(
+            "withdrawTab"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+
+    if (
+        type ===
+        "deposit"
+    ) {
+
+        document
+            .getElementById(
+                "depositContent"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+
+        document
+            .getElementById(
+                "depositTab"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+    } else {
+
+        document
+            .getElementById(
+                "withdrawContent"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+
+        document
+            .getElementById(
+                "withdrawTab"
+            )
+            .classList
+            .add(
+                "active"
+            );
+
+    }
+
+}
+
+
+
+/* ==================================
+   COPY ADDRESS
+================================== */
+
+function copyAddress() {
+
+    navigator
+        .clipboard
+        .writeText(
+            DEPOSIT_ADDRESS
+        )
+        .then(
+            function() {
+
+                alert(
+                    "Address copied."
+                );
+
+            }
+        );
+
+}
+
+
+
+/* ==================================
+   DEPOSIT REQUEST
+================================== */
+
+function submitDeposit() {
 
     const amount =
         Number(
@@ -1134,14 +1671,57 @@ function addDeposit() {
     }
 
 
-    balance += amount;
+    const request = {
+
+        id:
+            Date.now(),
+
+        amount:
+            amount,
+
+        status:
+            "Pending",
+
+        date:
+            new Date()
+                .toLocaleString()
+
+    };
+
+
+    depositRequests
+        .unshift(
+            request
+        );
 
 
     addHistory(
-        "Deposit record",
+
+        "Deposit Request",
+
         "$" +
-        amount.toFixed(2)
+        amount.toFixed(2),
+
+        "Pending"
+
     );
+
+
+    document
+        .getElementById(
+            "depositMessage"
+        )
+        .innerHTML =
+
+        "<div class='status-box pending'>" +
+
+        "⏳ Deposit request submitted.<br>" +
+
+        "Status: <strong>Pending</strong><br><br>" +
+
+        "Balance will update only after approval." +
+
+        "</div>";
 
 
     document
@@ -1152,30 +1732,160 @@ function addDeposit() {
             "";
 
 
-    saveData();
+    saveAll();
+
+}
 
 
-    alert(
-        "Deposit record added."
+
+/* ==================================
+   TAP SYSTEM
+================================== */
+
+function tapUnlocked() {
+
+    return (
+        approvedDepositTotal >=
+        TAP_UNLOCK_DEPOSIT
     );
 
 }
 
 
 
-/* ===============================
-   COIN CONVERSION
-================================ */
+function updateTapStatus() {
 
-function convertCoins() {
+    const fox =
+        document
+            .getElementById(
+                "fox"
+            );
+
+
+    const status =
+        document
+            .getElementById(
+                "tapStatus"
+            );
+
 
     if (
-        coins <
-        COINS_FOR_100
+        tapUnlocked()
+    ) {
+
+        fox.classList
+            .add(
+                "unlocked"
+            );
+
+
+        status.className =
+            "tap-status unlocked-text";
+
+
+        status.innerText =
+            "✅ Tap Unlocked — +1 Coin";
+
+    } else {
+
+        fox.classList
+            .remove(
+                "unlocked"
+            );
+
+
+        status.className =
+            "tap-status locked-text";
+
+
+        status.innerText =
+            "🔒 Tap Locked";
+
+    }
+
+}
+
+
+
+function tapFox(event) {
+
+    if (
+        !tapUnlocked()
     ) {
 
         alert(
-            "You need 1,000,000 coins."
+            "Tap unlocks after an approved $100 deposit."
+        );
+
+        return;
+
+    }
+
+
+    coins +=
+        TAP_REWARD;
+
+
+    const float =
+        document
+            .createElement(
+                "div"
+            );
+
+
+    float.className =
+        "floatCoin";
+
+
+    float.innerText =
+        "+1 🪙";
+
+
+    float.style.left =
+        event.clientX +
+        "px";
+
+
+    float.style.top =
+        event.clientY +
+        "px";
+
+
+    document.body
+        .appendChild(
+            float
+        );
+
+
+    setTimeout(
+        function() {
+
+            float.remove();
+
+        },
+        700
+    );
+
+
+    saveAll();
+
+}
+
+
+
+/* ==================================
+   SPIN GAME
+================================== */
+
+function spinGame() {
+
+    if (
+        coins <
+        SPIN_COST
+    ) {
+
+        alert(
+            "You need at least 10 game coins."
         );
 
         return;
@@ -1184,59 +1894,151 @@ function convertCoins() {
 
 
     coins -=
-        COINS_FOR_100;
+        SPIN_COST;
 
 
-    balance +=
-        CREDIT_FOR_COINS;
+    const symbols = [
+
+        "🦊",
+        "🪙",
+        "⭐",
+        "🍀",
+        "💎"
+
+    ];
 
 
-    addHistory(
-        "Coin conversion",
-        "1,000,000 Coins → $100"
-    );
+    const a =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
 
 
-    saveData();
+    const b =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
 
 
-    alert(
-        "$100 simulation credit added."
-    );
+    const c =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+
+    document
+        .getElementById(
+            "slot1"
+        )
+        .innerText =
+            a;
+
+
+    document
+        .getElementById(
+            "slot2"
+        )
+        .innerText =
+            b;
+
+
+    document
+        .getElementById(
+            "slot3"
+        )
+        .innerText =
+            c;
+
+
+    let reward =
+        0;
+
+
+    /*
+    Entertainment-only coin reward.
+    No real-money value.
+    */
+
+    if (
+        a === b &&
+        b === c
+    ) {
+
+        reward =
+            100;
+
+    } else if (
+        a === b ||
+        b === c ||
+        a === c
+    ) {
+
+        reward =
+            20;
+
+    }
+
+
+    coins +=
+        reward;
+
+
+    const result =
+        document
+            .getElementById(
+                "spinResult"
+            );
+
+
+    if (
+        reward >
+        0
+    ) {
+
+        result.innerText =
+            "🎉 +" +
+            reward +
+            " game coins";
+
+    } else {
+
+        result.innerText =
+            "Try again!";
+
+    }
+
+
+    saveAll();
 
 }
 
 
 
-/* ===============================
+/* ==================================
    WITHDRAW
-================================ */
+================================== */
 
-function showWithdraw() {
-
-    showSection(
-        "withdrawSection"
-    );
-
-
-    updateWithdrawalStatus();
-
-}
-
-
-
-function updateWithdrawalStatus() {
+function updateWithdrawLock() {
 
     const button =
         document
             .getElementById(
-                "withdrawSubmit"
+                "withdrawButton"
             );
 
 
     if (
         new Date() <
-        WITHDRAW_UNLOCK
+        WITHDRAW_DATE
     ) {
 
         button.disabled =
@@ -1244,7 +2046,7 @@ function updateWithdrawalStatus() {
 
 
         button.style.opacity =
-            "0.45";
+            ".45";
 
 
         button.innerText =
@@ -1269,15 +2071,15 @@ function updateWithdrawalStatus() {
 
 
 
-function submitWithdrawal() {
+function submitWithdraw() {
 
     if (
         new Date() <
-        WITHDRAW_UNLOCK
+        WITHDRAW_DATE
     ) {
 
         alert(
-            "Withdrawal is locked until 01/01/2027."
+            "Withdrawals unlock on 01/01/2027."
         );
 
         return;
@@ -1285,10 +2087,10 @@ function submitWithdrawal() {
     }
 
 
-    const tonkeeperId =
+    const account =
         document
             .getElementById(
-                "tonkeeperId"
+                "withdrawAccount"
             )
             .value
             .trim();
@@ -1305,7 +2107,7 @@ function submitWithdrawal() {
 
 
     if (
-        !tonkeeperId
+        !account
     ) {
 
         alert(
@@ -1323,7 +2125,7 @@ function submitWithdrawal() {
     ) {
 
         alert(
-            "Enter withdrawal amount."
+            "Enter a valid amount."
         );
 
         return;
@@ -1345,19 +2147,34 @@ function submitWithdrawal() {
     }
 
 
-    /*
-    Simulation only:
-    Do not actually send money.
-    */
+    withdrawRequests.unshift({
+
+        id:
+            Date.now(),
+
+        amount:
+            amount,
+
+        status:
+            "Pending",
+
+        date:
+            new Date()
+                .toLocaleString()
+
+    });
+
 
     addHistory(
-        "Withdrawal Pending",
+
+        "Withdrawal Request",
+
         "$" +
-        amount.toFixed(2)
+        amount.toFixed(2),
+
+        "Pending"
+
     );
-
-
-    saveData();
 
 
     document
@@ -1366,24 +2183,18 @@ function submitWithdrawal() {
         )
         .innerHTML =
 
-        "<div class='pending'>" +
+        "<div class='status-box pending'>" +
 
-        "⏳ Withdrawal request submitted." +
+        "⏳ Request submitted.<br>" +
 
-        "<br><br>" +
-
-        "Status: <strong>Pending</strong>" +
-
-        "<br>" +
-
-        "Please wait while the request is reviewed." +
+        "Please wait while it is reviewed." +
 
         "</div>";
 
 
     document
         .getElementById(
-            "tonkeeperId"
+            "withdrawAccount"
         )
         .value =
             "";
@@ -1396,158 +2207,21 @@ function submitWithdrawal() {
         .value =
             "";
 
-}
 
-
-
-/* ===============================
-   REFERRAL
-================================ */
-
-function inviteFriend() {
-
-    const userId =
-        tg &&
-        tg.initDataUnsafe &&
-        tg.initDataUnsafe.user
-            ? tg.initDataUnsafe.user.id
-            : "user";
-
-
-    const referralLink =
-
-        "https://t.me/" +
-        BOT_USERNAME +
-        "?start=ref_" +
-        userId;
-
-
-    const shareLink =
-
-        "https://t.me/share/url?url=" +
-
-        encodeURIComponent(
-            referralLink
-        ) +
-
-        "&text=" +
-
-        encodeURIComponent(
-            "Join FOXOPI"
-        );
-
-
-    if (
-        tg &&
-        tg.openTelegramLink
-    ) {
-
-        tg.openTelegramLink(
-            shareLink
-        );
-
-    } else {
-
-        window.location.href =
-            shareLink;
-
-    }
+    saveAll();
 
 }
 
 
 
-function claimReferralTest() {
-
-    const alreadyClaimed =
-        localStorage.getItem(
-            "foxopiReferralTest"
-        );
-
-
-    if (
-        alreadyClaimed ===
-        "yes"
-    ) {
-
-        alert(
-            "Referral test bonus already claimed."
-        );
-
-        return;
-
-    }
-
-
-    balance +=
-        REFERRAL_BONUS;
-
-
-    localStorage.setItem(
-        "foxopiReferralTest",
-        "yes"
-    );
-
-
-    addHistory(
-        "Referral Bonus",
-        "$100"
-    );
-
-
-    saveData();
-
-
-    alert(
-        "$100 referral simulation bonus added."
-    );
-
-}
-
-
-
-/* ===============================
-   PROJECTION
-================================ */
-
-function showProjection() {
-
-    showSection(
-        "projectionSection"
-    );
-
-
-    document
-        .getElementById(
-            "projectionCurrent"
-        )
-        .innerText =
-            "$" +
-            balance.toFixed(2);
-
-
-    document
-        .getElementById(
-            "projectionFuture"
-        )
-        .innerText =
-            "$" +
-            (
-                balance *
-                1.90
-            ).toFixed(2);
-
-}
-
-
-
-/* ===============================
+/* ==================================
    HISTORY
-================================ */
+================================== */
 
 function addHistory(
     title,
-    value
+    amount,
+    status
 ) {
 
     history.unshift({
@@ -1555,8 +2229,11 @@ function addHistory(
         title:
             title,
 
-        value:
-            value,
+        amount:
+            amount,
+
+        status:
+            status,
 
         date:
             new Date()
@@ -1565,31 +2242,19 @@ function addHistory(
     });
 
 
-    if (
-        history.length >
-        50
-    ) {
-
-        history =
-            history.slice(
-                0,
-                50
-            );
-
-    }
+    history =
+        history.slice(
+            0,
+            50
+        );
 
 }
 
 
 
-function showHistory() {
+function renderHistory() {
 
-    showSection(
-        "historySection"
-    );
-
-
-    const list =
+    const box =
         document
             .getElementById(
                 "historyList"
@@ -1601,7 +2266,7 @@ function showHistory() {
         0
     ) {
 
-        list.innerHTML =
+        box.innerHTML =
             "No activity yet.";
 
         return;
@@ -1609,7 +2274,7 @@ function showHistory() {
     }
 
 
-    list.innerHTML =
+    box.innerHTML =
         "";
 
 
@@ -1629,22 +2294,30 @@ function showHistory() {
 
             div.innerHTML =
 
+                "<div class='history-top'>" +
+
                 "<strong>" +
                 item.title +
                 "</strong>" +
 
-                "<br>" +
+                "<span>" +
+                item.amount +
+                "</span>" +
 
-                item.value +
+                "</div>" +
 
                 "<div class='history-date'>" +
 
                 item.date +
 
+                " • " +
+
+                item.status +
+
                 "</div>";
 
 
-            list.appendChild(
+            box.appendChild(
                 div
             );
 
@@ -1655,15 +2328,13 @@ function showHistory() {
 
 
 
-/* ===============================
+/* ==================================
    START
-================================ */
+================================== */
 
 updateUI();
-
-updateWithdrawalStatus();
 
 </script>
 
 </body>
-      </html>
+    </html>
