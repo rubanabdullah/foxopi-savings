@@ -2,258 +2,353 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>FOXOPI Savings</title>
+<title>FOXOPI</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d111b;
-  color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1019;
+    color: white;
 }
 
-.container {
-  max-width: 450px;
-  margin: auto;
-  padding: 20px;
+.app {
+    max-width: 460px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 16px;
+}
+
+
+/* TOP BAR */
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.top-box {
+    background: #182131;
+    padding: 12px 14px;
+    border-radius: 16px;
+    min-width: 145px;
+}
+
+.top-label {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.top-value {
+    margin-top: 4px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 
 /* HEADER */
 
 .header {
-  text-align: center;
-  margin-top: 10px;
+    text-align: center;
+    margin-top: 22px;
 }
 
-.logo {
-  font-size: 34px;
-  font-weight: bold;
+.title {
+    font-size: 27px;
+    font-weight: bold;
 }
 
 .subtitle {
-  color: #9ca3af;
-  margin-top: 6px;
+    margin-top: 5px;
+    color: #94a3b8;
+    font-size: 13px;
 }
 
 
-/* BALANCE */
+/* FOX */
 
-.balance-card {
-  background: #1a2232;
-  border-radius: 24px;
-  padding: 25px;
-  margin-top: 25px;
-  text-align: center;
+.fox-area {
+    text-align: center;
+    margin: 25px 0 20px;
 }
 
-.small-title {
-  color: #9ca3af;
-  font-size: 14px;
+.fox {
+    width: 180px;
+    height: 180px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 110px;
+
+    background: #182131;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    box-shadow:
+        0 0 35px rgba(245, 158, 11, 0.18);
+
+    transition: transform 0.08s;
 }
 
-.balance {
-  font-size: 42px;
-  font-weight: bold;
-  margin-top: 8px;
+.fox:active {
+    transform: scale(0.92);
 }
 
-.term {
-  margin-top: 12px;
-  font-size: 15px;
-  color: #cbd5e1;
+.tap-text {
+    margin-top: 12px;
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+.tap-info {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
 
 /* PLAN */
 
 .plan-card {
-  background: #1a2232;
-  margin-top: 18px;
-  padding: 20px;
-  border-radius: 20px;
+    background: #182131;
+    border-radius: 20px;
+    padding: 18px;
+    margin-top: 16px;
 }
 
-.plan-row {
-  display: flex;
-  justify-content: space-between;
-  margin: 12px 0;
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
 }
 
 .green {
-  color: #22c55e;
-  font-weight: bold;
+    color: #22c55e;
+    font-weight: bold;
 }
 
 .blue {
-  color: #60a5fa;
-  font-weight: bold;
+    color: #60a5fa;
+    font-weight: bold;
 }
 
 
-/* PROGRESS */
+/* BUTTONS */
 
-.progress-bg {
-  height: 10px;
-  background: #30394a;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 15px;
-}
-
-.progress {
-  height: 100%;
-  width: 0%;
-  background: #22c55e;
-  border-radius: 20px;
-}
-
-
-/* MAIN BUTTONS */
-
-.buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 20px;
+.menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+    margin-top: 18px;
 }
 
 button {
-  border: none;
-  border-radius: 16px;
-  padding: 17px 10px;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 16px 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
 }
 
-.deposit {
-  background: #22c55e;
+.deposit-btn {
+    background: #22c55e;
 }
 
-.withdraw {
-  background: #ef4444;
+.withdraw-btn {
+    background: #ef4444;
 }
 
-.projection {
-  background: #3b82f6;
+.coin-btn {
+    background: #f59e0b;
 }
 
-.history {
-  background: #8b5cf6;
+.referral-btn {
+    background: #8b5cf6;
+}
+
+.projection-btn {
+    background: #3b82f6;
+}
+
+.history-btn {
+    background: #475569;
 }
 
 
 /* SECTIONS */
 
 .section {
-  display: none;
-  background: #1a2232;
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 20px;
+    display: none;
+    margin-top: 18px;
+    padding: 20px;
+    background: #182131;
+    border-radius: 20px;
 }
 
 .section h3 {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 
 /* INPUT */
 
 input {
-  width: 100%;
-  border: none;
-  border-radius: 12px;
-  padding: 15px;
-  margin-top: 10px;
-  font-size: 16px;
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 12px;
+
+    font-size: 16px;
 }
 
 
 /* ADDRESS */
 
 .address-box {
-  margin-top: 15px;
-  background: #101725;
-  border-radius: 12px;
-  padding: 16px;
+    background: #0e1624;
+    padding: 15px;
+    border-radius: 13px;
+    margin-top: 12px;
+
+    overflow-wrap: anywhere;
 }
 
-.address-title {
-  color: #94a3b8;
-  font-size: 13px;
+.small {
+    color: #94a3b8;
+    font-size: 12px;
 }
 
-.address-text {
-  margin-top: 7px;
-  font-size: 17px;
-  font-weight: bold;
+.address {
+    margin-top: 7px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 
 /* ACTION */
 
-.action {
-  width: 100%;
-  background: #2563eb;
-  margin-top: 12px;
+.action-btn {
+    width: 100%;
+    background: #2563eb;
+    margin-top: 12px;
 }
 
 
-/* PROJECTED */
+/* COINS */
 
-.projected-box {
-  text-align: center;
-  background: #101725;
-  border-radius: 15px;
-  padding: 20px;
-  margin-top: 15px;
+.coin-big {
+    text-align: center;
+    font-size: 35px;
+    margin: 20px 0 5px;
+    font-weight: bold;
+    color: #fbbf24;
 }
 
-.projected-value {
-  font-size: 30px;
-  font-weight: bold;
-  color: #22c55e;
+.conversion {
+    background: #0e1624;
+    padding: 17px;
+    border-radius: 14px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+/* WITHDRAW LOCK */
+
+.lock {
+    background: #0e1624;
+    border-radius: 13px;
+    padding: 14px;
+    margin-top: 12px;
+    color: #fbbf24;
+}
+
+
+/* PENDING */
+
+.pending {
+    padding: 14px;
+    background: #422006;
+    color: #fbbf24;
+    border-radius: 13px;
+    margin-top: 14px;
 }
 
 
 /* HISTORY */
 
 .history-item {
-  padding: 13px 0;
-  border-bottom: 1px solid #374151;
+    padding: 12px 0;
+    border-bottom: 1px solid #334155;
 }
 
 .history-date {
-  color: #94a3b8;
-  font-size: 12px;
-  margin-top: 5px;
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 4px;
 }
 
 
 /* NOTICE */
 
 .notice {
-  text-align: center;
-  color: #94a3b8;
-  font-size: 12px;
-  line-height: 1.6;
-  margin: 25px 10px;
+    color: #64748b;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 25px 12px;
+}
+
+
+/* FLOAT EFFECT */
+
+.float-coin {
+    position: fixed;
+    pointer-events: none;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: #fbbf24;
+
+    animation: floatUp 0.8s forwards;
+}
+
+@keyframes floatUp {
+
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+
 }
 
 </style>
@@ -262,257 +357,435 @@ input {
 
 <body>
 
-<div class="container">
+<div class="app">
+
+
+<!-- TOP BALANCE -->
+
+<div class="top-bar">
+
+    <div class="top-box">
+
+        <div class="top-label">
+            BALANCE
+        </div>
+
+        <div
+            class="top-value"
+            id="balance"
+        >
+            $0.00
+        </div>
+
+    </div>
+
+
+    <div
+        class="top-box"
+        onclick="showSection('coinSection')"
+    >
+
+        <div class="top-label">
+            🪙 COINS
+        </div>
+
+        <div
+            class="top-value"
+            id="coinTop"
+        >
+            0
+        </div>
+
+    </div>
+
+</div>
+
 
 
 <!-- HEADER -->
 
 <div class="header">
 
-  <div class="logo">
-    💎 FOXOPI
-  </div>
+    <div class="title">
+        FOXOPI
+    </div>
 
-  <div class="subtitle">
-    Savings Simulator
-  </div>
-
-</div>
-
-
-<!-- BALANCE -->
-
-<div class="balance-card">
-
-  <div class="small-title">
-    BALANCE
-  </div>
-
-  <div
-    class="balance"
-    id="balance"
-  >
-    $0.00
-  </div>
-
-  <div class="term">
-    ⏳ Plan Duration: 3 Months
-  </div>
+    <div class="subtitle">
+        Savings Simulator
+    </div>
 
 </div>
 
 
-<!-- PLAN INFORMATION -->
+
+<!-- FOX -->
+
+<div class="fox-area">
+
+    <div
+        class="fox"
+        id="fox"
+        onclick="tapFox(event)"
+    >
+        🦊
+    </div>
+
+    <div class="tap-text">
+        TAP FOX
+    </div>
+
+    <div class="tap-info">
+        +1,000 coins per tap
+    </div>
+
+</div>
+
+
+
+<!-- PLAN -->
 
 <div class="plan-card">
 
-  <div class="plan-row">
+    <div class="row">
 
-    <span>
-      Plan
-    </span>
+        <span>
+            Plan Duration
+        </span>
 
-    <span class="blue">
-      3 Months
-    </span>
+        <span class="blue">
+            3 Months
+        </span>
 
-  </div>
-
-
-  <div class="plan-row">
-
-    <span>
-      Maximum Projection
-    </span>
-
-    <span class="green">
-      Up to 90%
-    </span>
-
-  </div>
+    </div>
 
 
-  <div class="plan-row">
+    <div class="row">
 
-    <span>
-      Projected Balance
-    </span>
+        <span>
+            Maximum Projection
+        </span>
 
-    <span
-      class="green"
-      id="projectedTop"
+        <span class="green">
+            Up to 90%
+        </span>
+
+    </div>
+
+
+    <div class="row">
+
+        <span>
+            Projected Balance
+        </span>
+
+        <span
+            class="green"
+            id="projectedBalance"
+        >
+            $0.00
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- MAIN MENU -->
+
+<div class="menu">
+
+    <button
+        class="deposit-btn"
+        onclick="showSection('depositSection')"
     >
-      $0.00
-    </span>
-
-  </div>
+        ➕ Deposit
+    </button>
 
 
-  <div class="progress-bg">
+    <button
+        class="withdraw-btn"
+        onclick="showWithdraw()"
+    >
+        ➖ Withdraw
+    </button>
+
+
+    <button
+        class="coin-btn"
+        onclick="showSection('coinSection')"
+    >
+        🪙 Coins
+    </button>
+
+
+    <button
+        class="referral-btn"
+        onclick="showSection('referralSection')"
+    >
+        👥 Refer
+    </button>
+
+
+    <button
+        class="projection-btn"
+        onclick="showProjection()"
+    >
+        📈 Projection
+    </button>
+
+
+    <button
+        class="history-btn"
+        onclick="showHistory()"
+    >
+        📜 History
+    </button>
+
+</div>
+
+
+
+<!-- DEPOSIT -->
+
+<div
+    id="depositSection"
+    class="section"
+>
+
+    <h3>
+        ➕ Deposit
+    </h3>
+
+    <div class="small">
+        ADDRESS
+    </div>
+
+
+    <div class="address-box">
+
+        <div class="address">
+
+UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
+
+        </div>
+
+    </div>
+
+
+    <input
+        id="depositAmount"
+        type="number"
+        placeholder="Enter amount"
+    >
+
+
+    <button
+        class="action-btn"
+        onclick="addDeposit()"
+    >
+        Submit
+    </button>
+
+</div>
+
+
+
+<!-- WITHDRAW -->
+
+<div
+    id="withdrawSection"
+    class="section"
+>
+
+    <h3>
+        ➖ Withdraw
+    </h3>
+
+
+    <div class="lock">
+
+        🔒 Withdrawal available from
+
+        <strong>
+            01/01/2027
+        </strong>
+
+    </div>
+
+
+    <input
+        id="tonkeeperId"
+        type="text"
+        placeholder="Enter Tonkeeper ID"
+    >
+
+
+    <input
+        id="withdrawAmount"
+        type="number"
+        placeholder="Withdrawal amount"
+    >
+
+
+    <button
+        id="withdrawSubmit"
+        class="action-btn"
+        onclick="submitWithdrawal()"
+    >
+        Submit Withdrawal
+    </button>
+
 
     <div
-      class="progress"
-      id="progress"
+        id="withdrawMessage"
     ></div>
 
-  </div>
-
-</div>
-
-
-<!-- BUTTONS -->
-
-<div class="buttons">
-
-  <button
-    class="deposit"
-    onclick="showSection('depositSection')"
-  >
-    ➕ Deposit
-  </button>
-
-
-  <button
-    class="withdraw"
-    onclick="showSection('withdrawSection')"
-  >
-    ➖ Withdraw
-  </button>
-
-
-  <button
-    class="projection"
-    onclick="showProjection()"
-  >
-    📈 Projection
-  </button>
-
-
-  <button
-    class="history"
-    onclick="showHistory()"
-  >
-    📜 History
-  </button>
-
 </div>
 
 
 
-<!-- DEPOSIT SECTION -->
+<!-- COINS -->
 
 <div
-  id="depositSection"
-  class="section"
+    id="coinSection"
+    class="section"
 >
 
-  <h3>
-    ➕ Deposit
-  </h3>
+    <h3>
+        🪙 FOXOPI Coins
+    </h3>
 
-
-  <div class="address-box">
-
-    <div class="address-title">
-      PAYMENT
-    </div>
-
-    <div class="address-text">
-      Address
-    </div>
-
-  </div>
-
-
-  <input
-    id="depositAmount"
-    type="number"
-    placeholder="Enter amount in USD"
-  >
-
-
-  <button
-    class="action"
-    onclick="depositMoney()"
-  >
-    Add Balance
-  </button>
-
-</div>
-
-
-
-<!-- WITHDRAW SECTION -->
-
-<div
-  id="withdrawSection"
-  class="section"
->
-
-  <h3>
-    ➖ Withdraw
-  </h3>
-
-
-  <input
-    id="withdrawAmount"
-    type="number"
-    placeholder="Enter amount in USD"
-  >
-
-
-  <button
-    class="action"
-    onclick="withdrawMoney()"
-  >
-    Withdraw
-  </button>
-
-</div>
-
-
-
-<!-- PROJECTION SECTION -->
-
-<div
-  id="projectionSection"
-  class="section"
->
-
-  <h3>
-    📈 3 Month Projection
-  </h3>
-
-
-  <p>
-    Maximum simulation growth:
-    <strong>90%</strong>
-  </p>
-
-
-  <div class="projected-box">
-
-    <div class="small-title">
-      CURRENT BALANCE
-    </div>
-
-    <h2 id="projectionCurrent">
-      $0.00
-    </h2>
-
-
-    <div class="small-title">
-      PROJECTED AFTER 3 MONTHS
-    </div>
 
     <div
-      class="projected-value"
-      id="projectionFuture"
+        class="coin-big"
+        id="coinSectionAmount"
     >
-      $0.00
+        0
     </div>
 
-  </div>
+
+    <div class="conversion">
+
+        <strong>
+            1,000,000 Coins
+        </strong>
+
+        <br><br>
+
+        =
+
+        <br><br>
+
+        <strong>
+            $100 Simulation Credit
+        </strong>
+
+    </div>
+
+
+    <button
+        class="action-btn"
+        onclick="convertCoins()"
+    >
+        Convert 1,000,000 Coins
+    </button>
+
+</div>
+
+
+
+<!-- REFERRAL -->
+
+<div
+    id="referralSection"
+    class="section"
+>
+
+    <h3>
+        👥 Refer Friends
+    </h3>
+
+
+    <p>
+
+        Invite a friend and receive
+
+        <strong>
+            $100 referral simulation bonus
+        </strong>.
+
+    </p>
+
+
+    <button
+        class="action-btn"
+        onclick="inviteFriend()"
+    >
+        📤 Invite Friend
+    </button>
+
+
+    <button
+        class="action-btn"
+        onclick="claimReferralTest()"
+    >
+        🎁 Claim Referral Test Bonus
+    </button>
+
+
+    <p class="small">
+
+        GitHub Pages cannot verify whether
+        another person actually joined.
+        The claim button is therefore only
+        a local simulation.
+
+    </p>
+
+</div>
+
+
+
+<!-- PROJECTION -->
+
+<div
+    id="projectionSection"
+    class="section"
+>
+
+    <h3>
+        📈 3 Month Projection
+    </h3>
+
+
+    <div class="conversion">
+
+        Current Balance
+
+        <div
+            class="coin-big"
+            id="projectionCurrent"
+        >
+            $0.00
+        </div>
+
+
+        Maximum simulation projection
+
+        <div
+            class="coin-big"
+            id="projectionFuture"
+        >
+            $0.00
+        </div>
+
+
+        <div class="small">
+            Based on up to 90% growth over 3 months.
+        </div>
+
+    </div>
 
 </div>
 
@@ -521,32 +794,35 @@ input {
 <!-- HISTORY -->
 
 <div
-  id="historySection"
-  class="section"
+    id="historySection"
+    class="section"
 >
 
-  <h3>
-    📜 Transaction History
-  </h3>
+    <h3>
+        📜 History
+    </h3>
 
-  <div id="historyList">
-    No transactions yet.
-  </div>
+    <div id="historyList">
+        No activity yet.
+    </div>
 
 </div>
 
 
 
-<!-- NOTICE -->
-
 <div class="notice">
 
-  3-month and 90% figures are simulation projections only
-  and are not guaranteed financial returns.
+    FOXOPI is configured here as a simulation interface.
 
-  <br>
+    <br>
 
-  No real money or cryptocurrency is processed by this page.
+    No real cryptocurrency or money is sent,
+    received or withdrawn by this web page.
+
+    <br>
+
+    The 90% figure is a simulation projection,
+    not a guaranteed financial return.
 
 </div>
 
@@ -557,323 +833,750 @@ input {
 
 <script>
 
+/* ===============================
+   SETTINGS
+================================ */
 
-/* TELEGRAM MINI APP */
+const BOT_USERNAME =
+    "Foxopi_bot";
 
-if (
-  window.Telegram &&
-  window.Telegram.WebApp
-) {
+const TAP_REWARD =
+    1000;
 
-  Telegram.WebApp.ready();
+const COINS_FOR_100 =
+    1000000;
 
-  Telegram.WebApp.expand();
+const CREDIT_FOR_COINS =
+    100;
+
+const REFERRAL_BONUS =
+    100;
+
+const WITHDRAW_UNLOCK =
+    new Date(
+        "2027-01-01T00:00:00"
+    );
+
+
+
+/* ===============================
+   TELEGRAM
+================================ */
+
+const tg =
+    window.Telegram &&
+    window.Telegram.WebApp
+        ? window.Telegram.WebApp
+        : null;
+
+
+if (tg) {
+
+    tg.ready();
+
+    tg.expand();
 
 }
 
 
 
-/* STORED DATA */
+/* ===============================
+   DATA
+================================ */
 
 let balance =
-  Number(
-    localStorage.getItem(
-      "foxopiBalance"
-    )
-  ) || 0;
+    Number(
+        localStorage.getItem(
+            "foxopiBalance"
+        )
+    ) || 0;
+
+
+let coins =
+    Number(
+        localStorage.getItem(
+            "foxopiCoins"
+        )
+    ) || 0;
 
 
 let history =
-  JSON.parse(
-    localStorage.getItem(
-      "foxopiHistory"
-    )
-  ) || [];
-
-
-let planStart =
-  localStorage.getItem(
-    "foxopiPlanStart"
-  );
-
-
-if (!planStart) {
-
-  planStart =
-    new Date().toISOString();
-
-  localStorage.setItem(
-    "foxopiPlanStart",
-    planStart
-  );
-
-}
+    JSON.parse(
+        localStorage.getItem(
+            "foxopiHistory"
+        )
+    ) || [];
 
 
 
-/* UPDATE BALANCE */
+/* ===============================
+   SAVE / UPDATE
+================================ */
 
-function updateBalance() {
+function saveData() {
 
-  document
-    .getElementById("balance")
-    .innerText =
-      "$" +
-      balance.toFixed(2);
-
-
-  /*
-  90% MAXIMUM PROJECTION
-  */
-
-  const projected =
-    balance * 1.90;
+    localStorage.setItem(
+        "foxopiBalance",
+        balance
+    );
 
 
-  document
-    .getElementById("projectedTop")
-    .innerText =
-      "$" +
-      projected.toFixed(2);
+    localStorage.setItem(
+        "foxopiCoins",
+        coins
+    );
 
 
-  localStorage.setItem(
-    "foxopiBalance",
-    balance
-  );
+    localStorage.setItem(
+        "foxopiHistory",
+        JSON.stringify(history)
+    );
 
 
-  updateProgress();
+    updateUI();
 
 }
 
 
 
-/* HIDE SECTIONS */
+function updateUI() {
+
+    document
+        .getElementById(
+            "balance"
+        )
+        .innerText =
+            "$" +
+            balance.toFixed(2);
+
+
+    document
+        .getElementById(
+            "coinTop"
+        )
+        .innerText =
+            coins.toLocaleString();
+
+
+    document
+        .getElementById(
+            "coinSectionAmount"
+        )
+        .innerText =
+            coins.toLocaleString();
+
+
+    const projected =
+        balance * 1.90;
+
+
+    document
+        .getElementById(
+            "projectedBalance"
+        )
+        .innerText =
+            "$" +
+            projected.toFixed(2);
+
+}
+
+
+
+/* ===============================
+   SECTIONS
+================================ */
 
 function hideSections() {
 
-  const sections = [
-    "depositSection",
-    "withdrawSection",
-    "projectionSection",
-    "historySection"
-  ];
+    const ids = [
+
+        "depositSection",
+
+        "withdrawSection",
+
+        "coinSection",
+
+        "referralSection",
+
+        "projectionSection",
+
+        "historySection"
+
+    ];
 
 
-  sections.forEach(
-    function(id) {
+    ids.forEach(
+        function(id) {
 
-      document
-        .getElementById(id)
-        .style.display =
-          "none";
+            document
+                .getElementById(id)
+                .style.display =
+                    "none";
 
-    }
-  );
+        }
+    );
 
 }
 
 
-
-/* SHOW SECTION */
 
 function showSection(id) {
 
-  hideSections();
+    hideSections();
 
-  document
-    .getElementById(id)
-    .style.display =
-      "block";
+
+    document
+        .getElementById(id)
+        .style.display =
+            "block";
 
 }
 
 
 
-/* DEPOSIT */
+/* ===============================
+   FOX TAP
+================================ */
 
-function depositMoney() {
+function tapFox(event) {
 
-  const amount =
-    Number(
-      document
+    coins +=
+        TAP_REWARD;
+
+
+    showFloatingReward(
+        event
+    );
+
+
+    saveData();
+
+}
+
+
+
+function showFloatingReward(
+    event
+) {
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "float-coin";
+
+
+    element.innerText =
+        "+" +
+        TAP_REWARD.toLocaleString() +
+        " 🪙";
+
+
+    element.style.left =
+        event.clientX +
+        "px";
+
+
+    element.style.top =
+        event.clientY +
+        "px";
+
+
+    document.body
+        .appendChild(
+            element
+        );
+
+
+    setTimeout(
+        function() {
+
+            element.remove();
+
+        },
+        800
+    );
+
+}
+
+
+
+/* ===============================
+   DEPOSIT RECORD
+================================ */
+
+function addDeposit() {
+
+    const amount =
+        Number(
+            document
+                .getElementById(
+                    "depositAmount"
+                )
+                .value
+        );
+
+
+    if (
+        !amount ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Enter a valid amount."
+        );
+
+        return;
+
+    }
+
+
+    balance += amount;
+
+
+    addHistory(
+        "Deposit record",
+        "$" +
+        amount.toFixed(2)
+    );
+
+
+    document
         .getElementById(
-          "depositAmount"
+            "depositAmount"
         )
-        .value
-    );
+        .value =
+            "";
 
 
-  if (
-    !amount ||
-    amount <= 0
-  ) {
+    saveData();
+
 
     alert(
-      "Enter a valid amount."
+        "Deposit record added."
     );
-
-    return;
-
-  }
-
-
-  balance += amount;
-
-
-  addHistory(
-    "Deposit",
-    amount
-  );
-
-
-  updateBalance();
-
-
-  document
-    .getElementById(
-      "depositAmount"
-    )
-    .value =
-      "";
-
-
-  alert(
-    "Balance updated."
-  );
 
 }
 
 
 
-/* WITHDRAW */
+/* ===============================
+   COIN CONVERSION
+================================ */
 
-function withdrawMoney() {
+function convertCoins() {
 
-  const amount =
-    Number(
-      document
+    if (
+        coins <
+        COINS_FOR_100
+    ) {
+
+        alert(
+            "You need 1,000,000 coins."
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        COINS_FOR_100;
+
+
+    balance +=
+        CREDIT_FOR_COINS;
+
+
+    addHistory(
+        "Coin conversion",
+        "1,000,000 Coins → $100"
+    );
+
+
+    saveData();
+
+
+    alert(
+        "$100 simulation credit added."
+    );
+
+}
+
+
+
+/* ===============================
+   WITHDRAW
+================================ */
+
+function showWithdraw() {
+
+    showSection(
+        "withdrawSection"
+    );
+
+
+    updateWithdrawalStatus();
+
+}
+
+
+
+function updateWithdrawalStatus() {
+
+    const button =
+        document
+            .getElementById(
+                "withdrawSubmit"
+            );
+
+
+    if (
+        new Date() <
+        WITHDRAW_UNLOCK
+    ) {
+
+        button.disabled =
+            true;
+
+
+        button.style.opacity =
+            "0.45";
+
+
+        button.innerText =
+            "Locked Until 01/01/2027";
+
+    } else {
+
+        button.disabled =
+            false;
+
+
+        button.style.opacity =
+            "1";
+
+
+        button.innerText =
+            "Submit Withdrawal";
+
+    }
+
+}
+
+
+
+function submitWithdrawal() {
+
+    if (
+        new Date() <
+        WITHDRAW_UNLOCK
+    ) {
+
+        alert(
+            "Withdrawal is locked until 01/01/2027."
+        );
+
+        return;
+
+    }
+
+
+    const tonkeeperId =
+        document
+            .getElementById(
+                "tonkeeperId"
+            )
+            .value
+            .trim();
+
+
+    const amount =
+        Number(
+            document
+                .getElementById(
+                    "withdrawAmount"
+                )
+                .value
+        );
+
+
+    if (
+        !tonkeeperId
+    ) {
+
+        alert(
+            "Enter Tonkeeper ID."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !amount ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Enter withdrawal amount."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        amount >
+        balance
+    ) {
+
+        alert(
+            "Insufficient balance."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    Simulation only:
+    Do not actually send money.
+    */
+
+    addHistory(
+        "Withdrawal Pending",
+        "$" +
+        amount.toFixed(2)
+    );
+
+
+    saveData();
+
+
+    document
         .getElementById(
-          "withdrawAmount"
+            "withdrawMessage"
         )
-        .value
-    );
+        .innerHTML =
+
+        "<div class='pending'>" +
+
+        "⏳ Withdrawal request submitted." +
+
+        "<br><br>" +
+
+        "Status: <strong>Pending</strong>" +
+
+        "<br>" +
+
+        "Please wait while the request is reviewed." +
+
+        "</div>";
 
 
-  if (
-    !amount ||
-    amount <= 0
-  ) {
-
-    alert(
-      "Enter a valid amount."
-    );
-
-    return;
-
-  }
+    document
+        .getElementById(
+            "tonkeeperId"
+        )
+        .value =
+            "";
 
 
-  if (
-    amount > balance
-  ) {
-
-    alert(
-      "Insufficient balance."
-    );
-
-    return;
-
-  }
-
-
-  balance -= amount;
-
-
-  addHistory(
-    "Withdraw",
-    amount
-  );
-
-
-  updateBalance();
-
-
-  document
-    .getElementById(
-      "withdrawAmount"
-    )
-    .value =
-      "";
-
-
-  alert(
-    "Balance updated."
-  );
+    document
+        .getElementById(
+            "withdrawAmount"
+        )
+        .value =
+            "";
 
 }
 
 
 
-/* PROJECTION */
+/* ===============================
+   REFERRAL
+================================ */
+
+function inviteFriend() {
+
+    const userId =
+        tg &&
+        tg.initDataUnsafe &&
+        tg.initDataUnsafe.user
+            ? tg.initDataUnsafe.user.id
+            : "user";
+
+
+    const referralLink =
+
+        "https://t.me/" +
+        BOT_USERNAME +
+        "?start=ref_" +
+        userId;
+
+
+    const shareLink =
+
+        "https://t.me/share/url?url=" +
+
+        encodeURIComponent(
+            referralLink
+        ) +
+
+        "&text=" +
+
+        encodeURIComponent(
+            "Join FOXOPI"
+        );
+
+
+    if (
+        tg &&
+        tg.openTelegramLink
+    ) {
+
+        tg.openTelegramLink(
+            shareLink
+        );
+
+    } else {
+
+        window.location.href =
+            shareLink;
+
+    }
+
+}
+
+
+
+function claimReferralTest() {
+
+    const alreadyClaimed =
+        localStorage.getItem(
+            "foxopiReferralTest"
+        );
+
+
+    if (
+        alreadyClaimed ===
+        "yes"
+    ) {
+
+        alert(
+            "Referral test bonus already claimed."
+        );
+
+        return;
+
+    }
+
+
+    balance +=
+        REFERRAL_BONUS;
+
+
+    localStorage.setItem(
+        "foxopiReferralTest",
+        "yes"
+    );
+
+
+    addHistory(
+        "Referral Bonus",
+        "$100"
+    );
+
+
+    saveData();
+
+
+    alert(
+        "$100 referral simulation bonus added."
+    );
+
+}
+
+
+
+/* ===============================
+   PROJECTION
+================================ */
 
 function showProjection() {
 
-  showSection(
-    "projectionSection"
-  );
+    showSection(
+        "projectionSection"
+    );
 
 
-  const future =
-    balance * 1.90;
+    document
+        .getElementById(
+            "projectionCurrent"
+        )
+        .innerText =
+            "$" +
+            balance.toFixed(2);
 
 
-  document
-    .getElementById(
-      "projectionCurrent"
-    )
-    .innerText =
-      "$" +
-      balance.toFixed(2);
-
-
-  document
-    .getElementById(
-      "projectionFuture"
-    )
-    .innerText =
-      "$" +
-      future.toFixed(2);
+    document
+        .getElementById(
+            "projectionFuture"
+        )
+        .innerText =
+            "$" +
+            (
+                balance *
+                1.90
+            ).toFixed(2);
 
 }
 
 
 
-/* HISTORY */
+/* ===============================
+   HISTORY
+================================ */
 
 function addHistory(
-  type,
-  amount
+    title,
+    value
 ) {
 
-  history.unshift({
+    history.unshift({
 
-    type: type,
+        title:
+            title,
 
-    amount: amount,
+        value:
+            value,
 
-    date:
-      new Date()
-        .toLocaleString()
+        date:
+            new Date()
+                .toLocaleString()
 
-  });
+    });
 
 
-  localStorage.setItem(
-    "foxopiHistory",
-    JSON.stringify(history)
-  );
+    if (
+        history.length >
+        50
+    ) {
+
+        history =
+            history.slice(
+                0,
+                50
+            );
+
+    }
 
 }
 
@@ -881,159 +1584,86 @@ function addHistory(
 
 function showHistory() {
 
-  showSection(
-    "historySection"
-  );
+    showSection(
+        "historySection"
+    );
 
 
-  const box =
-    document
-      .getElementById(
-        "historyList"
-      );
-
-
-  if (
-    history.length === 0
-  ) {
-
-    box.innerHTML =
-      "No transactions yet.";
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    "";
-
-
-  history
-    .slice(0, 30)
-    .forEach(
-      function(item) {
-
-        const div =
-          document
-            .createElement(
-              "div"
+    const list =
+        document
+            .getElementById(
+                "historyList"
             );
 
 
-        div.className =
-          "history-item";
+    if (
+        history.length ===
+        0
+    ) {
+
+        list.innerHTML =
+            "No activity yet.";
+
+        return;
+
+    }
 
 
-        const sign =
-          item.type ===
-          "Deposit"
-            ? "+"
-            : "-";
+    list.innerHTML =
+        "";
 
 
-        div.innerHTML =
+    history.forEach(
+        function(item) {
 
-          "<strong>" +
-          item.type +
-          "</strong>" +
-
-          "<br>" +
-
-          sign +
-          "$" +
-          Number(
-            item.amount
-          ).toFixed(2) +
-
-          "<div class='history-date'>" +
-          item.date +
-          "</div>";
+            const div =
+                document
+                    .createElement(
+                        "div"
+                    );
 
 
-        box.appendChild(
-          div
-        );
+            div.className =
+                "history-item";
 
-      }
+
+            div.innerHTML =
+
+                "<strong>" +
+                item.title +
+                "</strong>" +
+
+                "<br>" +
+
+                item.value +
+
+                "<div class='history-date'>" +
+
+                item.date +
+
+                "</div>";
+
+
+            list.appendChild(
+                div
+            );
+
+        }
     );
 
 }
 
 
 
-/* THREE MONTH PROGRESS */
+/* ===============================
+   START
+================================ */
 
-function updateProgress() {
+updateUI();
 
-  const start =
-    new Date(
-      planStart
-    );
-
-
-  const now =
-    new Date();
-
-
-  const totalDays =
-    90;
-
-
-  const daysPassed =
-    (
-      now - start
-    )
-    /
-    (
-      1000 *
-      60 *
-      60 *
-      24
-    );
-
-
-  let percent =
-    (
-      daysPassed /
-      totalDays
-    )
-    *
-    100;
-
-
-  if (
-    percent < 0
-  ) {
-    percent = 0;
-  }
-
-
-  if (
-    percent > 100
-  ) {
-    percent = 100;
-  }
-
-
-  document
-    .getElementById(
-      "progress"
-    )
-    .style.width =
-      percent +
-      "%";
-
-}
-
-
-
-/* INITIAL LOAD */
-
-updateBalance();
-
+updateWithdrawalStatus();
 
 </script>
 
 </body>
-    </html>
+      </html>
