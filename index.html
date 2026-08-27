@@ -1,430 +1,1039 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-  <title>Foxopi Savings</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>FOXOPI Savings</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #10131c;
-      color: white;
-    }
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    .container {
-      max-width: 420px;
-      margin: auto;
-      padding: 20px;
-    }
+<style>
 
-    h1 {
-      text-align: center;
-      margin-bottom: 5px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #999;
-      margin-bottom: 25px;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d111b;
+  color: white;
+}
 
-    .balance-box {
-      background: #1c2230;
-      border-radius: 20px;
-      padding: 25px;
-      text-align: center;
-    }
+.container {
+  max-width: 450px;
+  margin: auto;
+  padding: 20px;
+}
 
-    .balance-title {
-      color: #999;
-      font-size: 14px;
-    }
 
-    #balance {
-      font-size: 38px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+/* HEADER */
 
-    .buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
-    }
+.header {
+  text-align: center;
+  margin-top: 10px;
+}
 
-    button {
-      padding: 18px 8px;
-      border: none;
-      border-radius: 15px;
-      font-size: 15px;
-      font-weight: bold;
-      color: white;
-    }
+.logo {
+  font-size: 34px;
+  font-weight: bold;
+}
 
-    .deposit {
-      background: #22c55e;
-    }
+.subtitle {
+  color: #9ca3af;
+  margin-top: 6px;
+}
 
-    .withdraw {
-      background: #ef4444;
-    }
 
-    .calculator {
-      background: #3b82f6;
-    }
+/* BALANCE */
 
-    .history {
-      background: #8b5cf6;
-    }
+.balance-card {
+  background: #1a2232;
+  border-radius: 24px;
+  padding: 25px;
+  margin-top: 25px;
+  text-align: center;
+}
 
-    .box {
-      margin-top: 20px;
-      background: #1c2230;
-      border-radius: 18px;
-      padding: 18px;
-      display: none;
-    }
+.small-title {
+  color: #9ca3af;
+  font-size: 14px;
+}
 
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      margin: 8px 0;
-      font-size: 16px;
-    }
+.balance {
+  font-size: 42px;
+  font-weight: bold;
+  margin-top: 8px;
+}
 
-    .action {
-      width: 100%;
-      background: #2563eb;
-      margin-top: 8px;
-    }
+.term {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #cbd5e1;
+}
 
-    .warning {
-      color: #aaa;
-      text-align: center;
-      font-size: 12px;
-      margin-top: 25px;
-    }
 
-    .history-item {
-      padding: 8px;
-      border-bottom: 1px solid #333;
-    }
-  </style>
+/* PLAN */
+
+.plan-card {
+  background: #1a2232;
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.plan-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.green {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.blue {
+  color: #60a5fa;
+  font-weight: bold;
+}
+
+
+/* PROGRESS */
+
+.progress-bg {
+  height: 10px;
+  background: #30394a;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: #22c55e;
+  border-radius: 20px;
+}
+
+
+/* MAIN BUTTONS */
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 16px;
+  padding: 17px 10px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.deposit {
+  background: #22c55e;
+}
+
+.withdraw {
+  background: #ef4444;
+}
+
+.projection {
+  background: #3b82f6;
+}
+
+.history {
+  background: #8b5cf6;
+}
+
+
+/* SECTIONS */
+
+.section {
+  display: none;
+  background: #1a2232;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.section h3 {
+  margin-top: 0;
+}
+
+
+/* INPUT */
+
+input {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+
+/* ADDRESS */
+
+.address-box {
+  margin-top: 15px;
+  background: #101725;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.address-title {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.address-text {
+  margin-top: 7px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+/* ACTION */
+
+.action {
+  width: 100%;
+  background: #2563eb;
+  margin-top: 12px;
+}
+
+
+/* PROJECTED */
+
+.projected-box {
+  text-align: center;
+  background: #101725;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.projected-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+
+/* HISTORY */
+
+.history-item {
+  padding: 13px 0;
+  border-bottom: 1px solid #374151;
+}
+
+.history-date {
+  color: #94a3b8;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+/* NOTICE */
+
+.notice {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 25px 10px;
+}
+
+</style>
 </head>
+
 
 <body>
 
 <div class="container">
 
-  <h1>💎 FOXOPI</h1>
+
+<!-- HEADER -->
+
+<div class="header">
+
+  <div class="logo">
+    💎 FOXOPI
+  </div>
 
   <div class="subtitle">
     Savings Simulator
   </div>
 
-
-  <div class="balance-title">
-  BALANCE
 </div>
 
-<div id="balance">
-  $0.00
+
+<!-- BALANCE -->
+
+<div class="balance-card">
+
+  <div class="small-title">
+    BALANCE
+  </div>
+
+  <div
+    class="balance"
+    id="balance"
+  >
+    $0.00
+  </div>
+
+  <div class="term">
+    ⏳ Plan Duration: 3 Months
+  </div>
+
 </div>
 
-<div class="term">
-  ⏳ 3 Months
+
+<!-- PLAN INFORMATION -->
+
+<div class="plan-card">
+
+  <div class="plan-row">
+
+    <span>
+      Plan
+    </span>
+
+    <span class="blue">
+      3 Months
+    </span>
+
+  </div>
+
+
+  <div class="plan-row">
+
+    <span>
+      Maximum Projection
+    </span>
+
+    <span class="green">
+      Up to 90%
+    </span>
+
+  </div>
+
+
+  <div class="plan-row">
+
+    <span>
+      Projected Balance
+    </span>
+
+    <span
+      class="green"
+      id="projectedTop"
+    >
+      $0.00
+    </span>
+
+  </div>
+
+
+  <div class="progress-bg">
+
+    <div
+      class="progress"
+      id="progress"
+    ></div>
+
+  </div>
+
 </div>
- 
-  </div>
 
 
-  <div class="buttons">
+<!-- BUTTONS -->
 
-    <button class="deposit" onclick="openBox('depositBox')">
-      ➕ Deposit
-    </button>
+<div class="buttons">
 
-    <button class="withdraw" onclick="openBox('withdrawBox')">
-      ➖ Withdraw
-    </button>
-
-    <button class="calculator" onclick="openBox('calculatorBox')">
-      📈 5% Calculator
-    </button>
-
-    <button class="history" onclick="showHistory()">
-      📜 History
-    </button>
-
-  </div>
+  <button
+    class="deposit"
+    onclick="showSection('depositSection')"
+  >
+    ➕ Deposit
+  </button>
 
 
-  <div id="depositBox" class="box">
-
-    <h3>➕ Deposit</h3>
-
-    <input
-      type="number"
-      id="depositAmount"
-      placeholder="Enter amount"
-    >
-
-    <button class="action" onclick="depositMoney()">
-      Add Balance
-    </button>
-
-  </div>
+  <button
+    class="withdraw"
+    onclick="showSection('withdrawSection')"
+  >
+    ➖ Withdraw
+  </button>
 
 
-  <div id="withdrawBox" class="box">
-
-    <h3>➖ Withdraw</h3>
-
-    <input
-      type="number"
-      id="withdrawAmount"
-      placeholder="Enter amount"
-    >
-
-    <button class="action" onclick="withdrawMoney()">
-      Withdraw
-    </button>
-
-  </div>
+  <button
+    class="projection"
+    onclick="showProjection()"
+  >
+    📈 Projection
+  </button>
 
 
-  <div id="calculatorBox" class="box">
+  <button
+    class="history"
+    onclick="showHistory()"
+  >
+    📜 History
+  </button>
 
-    <h3>📈 99% Savings Calculator</h3>
-
-    <input
-      type="number"
-      id="years"
-      placeholder="Number of years"
-    >
-
-    <button class="action" onclick="calculateSavings()">
-      Calculate
-    </button>
-
-    <p id="result"></p>
-
-  </div>
+</div>
 
 
-  <div id="historyBox" class="box">
 
-    <h3>📜 History</h3>
+<!-- DEPOSIT SECTION -->
 
-    <div id="historyList">
-      transactions yet.
+<div
+  id="depositSection"
+  class="section"
+>
+
+  <h3>
+    ➕ Deposit
+  </h3>
+
+
+  <div class="address-box">
+
+    <div class="address-title">
+      PAYMENT
+    </div>
+
+    <div class="address-text">
+      Address
     </div>
 
   </div>
 
 
-  <div class="warning">
-     simulator only.cryptocurrency is accepted.
+  <input
+    id="depositAmount"
+    type="number"
+    placeholder="Enter amount in USD"
+  >
+
+
+  <button
+    class="action"
+    onclick="depositMoney()"
+  >
+    Add Balance
+  </button>
+
+</div>
+
+
+
+<!-- WITHDRAW SECTION -->
+
+<div
+  id="withdrawSection"
+  class="section"
+>
+
+  <h3>
+    ➖ Withdraw
+  </h3>
+
+
+  <input
+    id="withdrawAmount"
+    type="number"
+    placeholder="Enter amount in USD"
+  >
+
+
+  <button
+    class="action"
+    onclick="withdrawMoney()"
+  >
+    Withdraw
+  </button>
+
+</div>
+
+
+
+<!-- PROJECTION SECTION -->
+
+<div
+  id="projectionSection"
+  class="section"
+>
+
+  <h3>
+    📈 3 Month Projection
+  </h3>
+
+
+  <p>
+    Maximum simulation growth:
+    <strong>90%</strong>
+  </p>
+
+
+  <div class="projected-box">
+
+    <div class="small-title">
+      CURRENT BALANCE
+    </div>
+
+    <h2 id="projectionCurrent">
+      $0.00
+    </h2>
+
+
+    <div class="small-title">
+      PROJECTED AFTER 3 MONTHS
+    </div>
+
+    <div
+      class="projected-value"
+      id="projectionFuture"
+    >
+      $0.00
+    </div>
+
   </div>
 
 </div>
 
 
+
+<!-- HISTORY -->
+
+<div
+  id="historySection"
+  class="section"
+>
+
+  <h3>
+    📜 Transaction History
+  </h3>
+
+  <div id="historyList">
+    No transactions yet.
+  </div>
+
+</div>
+
+
+
+<!-- NOTICE -->
+
+<div class="notice">
+
+  3-month and 90% figures are simulation projections only
+  and are not guaranteed financial returns.
+
+  <br>
+
+  No real money or cryptocurrency is processed by this page.
+
+</div>
+
+
+</div>
+
+
+
 <script>
 
-  const tg = window.Telegram.WebApp;
 
-  tg.ready();
-  tg.expand();
+/* TELEGRAM MINI APP */
+
+if (
+  window.Telegram &&
+  window.Telegram.WebApp
+) {
+
+  Telegram.WebApp.ready();
+
+  Telegram.WebApp.expand();
+
+}
 
 
-  let balance =
-    Number(localStorage.getItem("foxopiBalance")) || 0;
+
+/* STORED DATA */
+
+let balance =
+  Number(
+    localStorage.getItem(
+      "foxopiBalance"
+    )
+  ) || 0;
 
 
-  let history =
-    JSON.parse(localStorage.getItem("foxopiHistory")) || [];
+let history =
+  JSON.parse(
+    localStorage.getItem(
+      "foxopiHistory"
+    )
+  ) || [];
 
 
-  function updateBalance() {
+let planStart =
+  localStorage.getItem(
+    "foxopiPlanStart"
+  );
 
-    document.getElementById("balance").innerText =
-      "$" + balance.toFixed(2);
 
-    localStorage.setItem(
-      "foxopiBalance",
-      balance
+if (!planStart) {
+
+  planStart =
+    new Date().toISOString();
+
+  localStorage.setItem(
+    "foxopiPlanStart",
+    planStart
+  );
+
+}
+
+
+
+/* UPDATE BALANCE */
+
+function updateBalance() {
+
+  document
+    .getElementById("balance")
+    .innerText =
+      "$" +
+      balance.toFixed(2);
+
+
+  /*
+  90% MAXIMUM PROJECTION
+  */
+
+  const projected =
+    balance * 1.90;
+
+
+  document
+    .getElementById("projectedTop")
+    .innerText =
+      "$" +
+      projected.toFixed(2);
+
+
+  localStorage.setItem(
+    "foxopiBalance",
+    balance
+  );
+
+
+  updateProgress();
+
+}
+
+
+
+/* HIDE SECTIONS */
+
+function hideSections() {
+
+  const sections = [
+    "depositSection",
+    "withdrawSection",
+    "projectionSection",
+    "historySection"
+  ];
+
+
+  sections.forEach(
+    function(id) {
+
+      document
+        .getElementById(id)
+        .style.display =
+          "none";
+
+    }
+  );
+
+}
+
+
+
+/* SHOW SECTION */
+
+function showSection(id) {
+
+  hideSections();
+
+  document
+    .getElementById(id)
+    .style.display =
+      "block";
+
+}
+
+
+
+/* DEPOSIT */
+
+function depositMoney() {
+
+  const amount =
+    Number(
+      document
+        .getElementById(
+          "depositAmount"
+        )
+        .value
     );
 
-  }
 
+  if (
+    !amount ||
+    amount <= 0
+  ) {
 
-  function closeBoxes() {
-
-    document.getElementById("depositBox").style.display = "none";
-
-    document.getElementById("withdrawBox").style.display = "none";
-
-    document.getElementById("calculatorBox").style.display = "none";
-
-    document.getElementById("historyBox").style.display = "none";
-
-  }
-
-
-  function openBox(id) {
-
-    closeBoxes();
-
-    document.getElementById(id).style.display = "block";
-
-  }
-
-
-  function depositMoney() {
-
-    let amount =
-      Number(document.getElementById("depositAmount").value);
-
-    if (amount <= 0) {
-
-      alert("Enter a valid amount");
-
-      return;
-    }
-
-    balance += amount;
-
-    history.unshift(
-      "➕ Deposit: $" + amount.toFixed(2)
+    alert(
+      "Enter a valid amount."
     );
 
-    saveData();
-
-    document.getElementById("depositAmount").value = "";
-
-    alert("Demo deposit added!");
+    return;
 
   }
 
 
-  function withdrawMoney() {
-
-    let amount =
-      Number(document.getElementById("withdrawAmount").value);
-
-    if (amount <= 0) {
-
-      alert("Enter a valid amount");
-
-      return;
-    }
-
-    if (amount > balance) {
-
-      alert("Insufficient demo balance");
-
-      return;
-    }
-
-    balance -= amount;
-
-    history.unshift(
-      "➖ Withdraw: $" + amount.toFixed(2)
-    );
-
-    saveData();
-
-    document.getElementById("withdrawAmount").value = "";
-
-    alert("Demo withdrawal completed!");
-
-  }
+  balance += amount;
 
 
-  function calculateSavings() {
-
-    let years =
-      Number(document.getElementById("years").value);
-
-    if (years <= 0) {
-
-      alert("Enter number of years");
-
-      return;
-    }
-
-    let future =
-      balance * Math.pow(1.05, years);
-
-    document.getElementById("result").innerText =
-      years +
-      " year(s) later: $" +
-      future.toFixed(2);
-
-  }
-
-
-  function showHistory() {
-
-    openBox("historyBox");
-
-    let list =
-      document.getElementById("historyList");
-
-    if (history.length === 0) {
-
-      list.innerHTML =
-        "No transactions yet.";
-
-      return;
-
-    }
-
-    list.innerHTML = "";
-
-    history.forEach(function(item) {
-
-      let div =
-        document.createElement("div");
-
-      div.className =
-        "history-item";
-
-      div.innerText =
-        item;
-
-      list.appendChild(div);
-
-    });
-
-  }
-
-
-  function saveData() {
-
-    localStorage.setItem(
-      "foxopiHistory",
-      JSON.stringify(history)
-    );
-
-    updateBalance();
-
-  }
+  addHistory(
+    "Deposit",
+    amount
+  );
 
 
   updateBalance();
 
+
+  document
+    .getElementById(
+      "depositAmount"
+    )
+    .value =
+      "";
+
+
+  alert(
+    "Balance updated."
+  );
+
+}
+
+
+
+/* WITHDRAW */
+
+function withdrawMoney() {
+
+  const amount =
+    Number(
+      document
+        .getElementById(
+          "withdrawAmount"
+        )
+        .value
+    );
+
+
+  if (
+    !amount ||
+    amount <= 0
+  ) {
+
+    alert(
+      "Enter a valid amount."
+    );
+
+    return;
+
+  }
+
+
+  if (
+    amount > balance
+  ) {
+
+    alert(
+      "Insufficient balance."
+    );
+
+    return;
+
+  }
+
+
+  balance -= amount;
+
+
+  addHistory(
+    "Withdraw",
+    amount
+  );
+
+
+  updateBalance();
+
+
+  document
+    .getElementById(
+      "withdrawAmount"
+    )
+    .value =
+      "";
+
+
+  alert(
+    "Balance updated."
+  );
+
+}
+
+
+
+/* PROJECTION */
+
+function showProjection() {
+
+  showSection(
+    "projectionSection"
+  );
+
+
+  const future =
+    balance * 1.90;
+
+
+  document
+    .getElementById(
+      "projectionCurrent"
+    )
+    .innerText =
+      "$" +
+      balance.toFixed(2);
+
+
+  document
+    .getElementById(
+      "projectionFuture"
+    )
+    .innerText =
+      "$" +
+      future.toFixed(2);
+
+}
+
+
+
+/* HISTORY */
+
+function addHistory(
+  type,
+  amount
+) {
+
+  history.unshift({
+
+    type: type,
+
+    amount: amount,
+
+    date:
+      new Date()
+        .toLocaleString()
+
+  });
+
+
+  localStorage.setItem(
+    "foxopiHistory",
+    JSON.stringify(history)
+  );
+
+}
+
+
+
+function showHistory() {
+
+  showSection(
+    "historySection"
+  );
+
+
+  const box =
+    document
+      .getElementById(
+        "historyList"
+      );
+
+
+  if (
+    history.length === 0
+  ) {
+
+    box.innerHTML =
+      "No transactions yet.";
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    "";
+
+
+  history
+    .slice(0, 30)
+    .forEach(
+      function(item) {
+
+        const div =
+          document
+            .createElement(
+              "div"
+            );
+
+
+        div.className =
+          "history-item";
+
+
+        const sign =
+          item.type ===
+          "Deposit"
+            ? "+"
+            : "-";
+
+
+        div.innerHTML =
+
+          "<strong>" +
+          item.type +
+          "</strong>" +
+
+          "<br>" +
+
+          sign +
+          "$" +
+          Number(
+            item.amount
+          ).toFixed(2) +
+
+          "<div class='history-date'>" +
+          item.date +
+          "</div>";
+
+
+        box.appendChild(
+          div
+        );
+
+      }
+    );
+
+}
+
+
+
+/* THREE MONTH PROGRESS */
+
+function updateProgress() {
+
+  const start =
+    new Date(
+      planStart
+    );
+
+
+  const now =
+    new Date();
+
+
+  const totalDays =
+    90;
+
+
+  const daysPassed =
+    (
+      now - start
+    )
+    /
+    (
+      1000 *
+      60 *
+      60 *
+      24
+    );
+
+
+  let percent =
+    (
+      daysPassed /
+      totalDays
+    )
+    *
+    100;
+
+
+  if (
+    percent < 0
+  ) {
+    percent = 0;
+  }
+
+
+  if (
+    percent > 100
+  ) {
+    percent = 100;
+  }
+
+
+  document
+    .getElementById(
+      "progress"
+    )
+    .style.width =
+      percent +
+      "%";
+
+}
+
+
+
+/* INITIAL LOAD */
+
+updateBalance();
+
+
 </script>
 
 </body>
-      </html>
+    </html>
