@@ -2,682 +2,543 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0,
-    maximum-scale=1.0, user-scalable=no"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <title>FOXOPI</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b1119;
-    color: white;
-}
-
-.app {
-    max-width: 480px;
-    margin: auto;
-    min-height: 100vh;
-    padding-bottom: 95px;
-}
-
-
-/* =========================
-   TOP BAR
-========================= */
-
-.top {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    gap: 10px;
-}
-
-.balance-card,
-.coin-card {
-    background: #171e29;
-    border-radius: 15px;
-    padding: 11px 14px;
-}
-
-.balance-card {
-    flex: 1;
-}
-
-.coin-card {
-    min-width: 120px;
-    text-align: right;
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-.mini-label {
-    font-size: 10px;
-    color: #8f9bad;
+body{
+    margin:0;
+    background:#0b1018;
+    color:#fff;
+    font-family:Arial,sans-serif;
 }
 
-.mini-value {
-    font-size: 19px;
-    font-weight: bold;
-    margin-top: 4px;
+.app{
+    max-width:480px;
+    margin:auto;
+    min-height:100vh;
+    padding-bottom:90px;
 }
 
-
-/* =========================
-   PAGES
-========================= */
-
-.page {
-    display: none;
-    padding: 0 16px 20px;
+/* TOP */
+.top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px;
 }
 
-.page.active {
-    display: block;
+.topCard{
+    background:#181f2c;
+    border-radius:14px;
+    padding:12px;
+    flex:1;
 }
-
 
-/* =========================
-   GAME
-========================= */
-
-.game-header {
-    text-align: center;
-    margin-top: 5px;
+.topCard:last-child{
+    text-align:right;
 }
 
-.game-title {
-    font-size: 25px;
-    font-weight: bold;
+.label{
+    color:#8d98a9;
+    font-size:11px;
 }
 
-.game-subtitle {
-    color: #8995a7;
-    font-size: 13px;
-    margin-top: 5px;
+.value{
+    margin-top:4px;
+    font-weight:700;
+    font-size:19px;
 }
 
-
-.fox-area {
-    text-align: center;
-    margin-top: 35px;
+/* PAGE */
+.page{
+    display:none;
+    padding:0 14px 20px;
 }
-
-.fox-circle {
-    width: 210px;
-    height: 210px;
-
-    margin: auto;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 125px;
 
-    background:
-        radial-gradient(
-            circle,
-            #253144,
-            #151d29
-        );
-
-    box-shadow:
-        0 0 45px rgba(255, 161, 22, 0.16);
-
-    user-select: none;
+.page.active{
+    display:block;
 }
 
-.fox-circle.unlocked {
-    cursor: pointer;
+/* GAME */
+.gameTitle{
+    text-align:center;
+    margin-top:5px;
 }
 
-.fox-circle:active {
-    transform: scale(.96);
+.gameTitle h1{
+    margin:0;
+    font-size:27px;
 }
 
-.tap-status {
-    margin-top: 15px;
-    font-weight: bold;
+.gameTitle p{
+    color:#8d98a9;
+    margin:6px 0 0;
 }
 
-.locked-text {
-    color: #f59e0b;
+.foxWrap{
+    text-align:center;
+    margin-top:28px;
 }
 
-.unlocked-text {
-    color: #22c55e;
+.fox{
+    width:205px;
+    height:205px;
+    margin:auto;
+    border-radius:50%;
+    background:radial-gradient(circle,#253247,#151c28);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:120px;
+    box-shadow:0 0 40px rgba(255,165,0,.14);
+    user-select:none;
+    transition:.08s;
 }
 
-.condition {
-    color: #8f9bad;
-    font-size: 12px;
-    margin-top: 7px;
+.fox.unlocked{
+    cursor:pointer;
 }
-
 
-/* =========================
-   CARDS
-========================= */
-
-.card {
-    background: #171e29;
-    border-radius: 18px;
-    padding: 18px;
-    margin-top: 18px;
+.fox:active{
+    transform:scale(.95);
 }
 
-.card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 14px;
+.tapStatus{
+    margin-top:13px;
+    font-weight:700;
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    margin: 12px 0;
-    gap: 15px;
+.locked{
+    color:#f59e0b;
 }
 
-.muted {
-    color: #8995a7;
+.unlocked{
+    color:#22c55e;
 }
 
-.green {
-    color: #22c55e;
+.smallText{
+    color:#8d98a9;
+    font-size:12px;
+    margin-top:7px;
 }
 
-.yellow {
-    color: #fbbf24;
+.card{
+    background:#181f2c;
+    border-radius:18px;
+    padding:18px;
+    margin-top:18px;
 }
-
-
-/* =========================
-   BUTTON
-========================= */
 
-button {
-    border: 0;
-    border-radius: 13px;
-
-    padding: 14px;
-
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-
-    cursor: pointer;
+.cardTitle{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:14px;
 }
 
-.full-button {
-    width: 100%;
-    margin-top: 12px;
+/* LEVELS */
+.level{
+    display:flex;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px solid #303a49;
 }
 
-.blue {
-    background: #2563eb;
+.level:last-child{
+    border-bottom:0;
 }
 
-.orange {
-    background: #e98a14;
+.level.lockedLevel{
+    opacity:.45;
 }
 
-.red {
-    background: #dc4242;
+.green{
+    color:#22c55e;
 }
 
-.purple {
-    background: #7c4de8;
+.yellow{
+    color:#fbbf24;
 }
-
-
-/* =========================
-   SPIN GAME
-========================= */
-
-.spin-display {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
 
-    font-size: 45px;
-
-    background: #0d141f;
-
-    padding: 20px;
-
-    border-radius: 15px;
+.blue{
+    color:#60a5fa;
 }
 
-.spin-info {
-    color: #8995a7;
-    text-align: center;
-    font-size: 12px;
-    margin-top: 10px;
+/* TASK */
+.task{
+    background:#111925;
+    padding:15px;
+    border-radius:14px;
+    margin-top:10px;
 }
-
-
-/* =========================
-   WALLET
-========================= */
-
-.wallet-tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
 
-    margin-top: 15px;
+.taskRow{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
 }
 
-.wallet-tab {
-    background: #222c3a;
+button{
+    border:0;
+    color:#fff;
+    font-weight:700;
+    border-radius:12px;
+    padding:13px 15px;
+    font-size:14px;
 }
 
-.wallet-tab.active {
-    background: #2563eb;
+.full{
+    width:100%;
+    margin-top:12px;
 }
 
-.wallet-content {
-    display: none;
-}
+.blueBtn{background:#2563eb;}
+.greenBtn{background:#16a34a;}
+.orangeBtn{background:#e98a14;}
+.redBtn{background:#dc4242;}
+.purpleBtn{background:#7c4de8;}
+.grayBtn{background:#374151;}
 
-.wallet-content.active {
-    display: block;
+/* SPIN */
+.spin{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    background:#0f1621;
+    border-radius:14px;
+    padding:18px;
+    font-size:42px;
 }
-
-.address-box {
-    background: #0d141f;
-
-    padding: 15px;
 
-    border-radius: 13px;
-
-    font-size: 12px;
-
-    overflow-wrap: anywhere;
-
-    margin-top: 12px;
+/* WALLET */
+.tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.copy {
-    margin-top: 10px;
-    width: 100%;
-    background: #344054;
+.tab{
+    background:#273142;
 }
-
 
-input {
-    width: 100%;
-
-    padding: 14px;
-
-    border-radius: 12px;
-    border: none;
-
-    outline: none;
-
-    margin-top: 12px;
-
-    font-size: 16px;
+.tab.active{
+    background:#2563eb;
 }
-
 
-.status-box {
-    margin-top: 13px;
-
-    padding: 13px;
-
-    border-radius: 12px;
-
-    background: #0d141f;
+.walletContent{
+    display:none;
 }
 
-.pending {
-    color: #fbbf24;
+.walletContent.active{
+    display:block;
 }
 
-.approved {
-    color: #22c55e;
+.address{
+    background:#0f1621;
+    padding:14px;
+    border-radius:12px;
+    font-size:12px;
+    overflow-wrap:anywhere;
+    margin-top:10px;
 }
 
-.rejected {
-    color: #ef4444;
+input{
+    width:100%;
+    border:0;
+    outline:0;
+    border-radius:12px;
+    padding:14px;
+    margin-top:10px;
+    font-size:16px;
 }
 
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-top {
-    text-align: center;
-    padding-top: 20px;
+.notice{
+    background:#0f1621;
+    border-radius:12px;
+    padding:13px;
+    margin-top:12px;
+    color:#9aa5b5;
+    font-size:12px;
+    line-height:1.5;
 }
-
-.avatar {
-    width: 78px;
-    height: 78px;
 
-    margin: auto;
-
-    background: #232d3c;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 36px;
+.status{
+    margin-top:12px;
+    background:#111925;
+    padding:14px;
+    border-radius:12px;
+    color:#fbbf24;
+    line-height:1.5;
 }
 
-.profile-name {
-    margin-top: 12px;
-    font-size: 22px;
-    font-weight: bold;
+/* PROFILE */
+.profile{
+    text-align:center;
+    padding-top:10px;
 }
 
-.profile-username {
-    color: #8995a7;
-    margin-top: 4px;
+.avatar{
+    width:75px;
+    height:75px;
+    margin:auto;
+    border-radius:50%;
+    background:#202b3b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
 }
-
-
-/* =========================
-   HISTORY
-========================= */
 
-.history-item {
-    border-bottom: 1px solid #303a49;
-    padding: 12px 0;
+.name{
+    margin-top:10px;
+    font-size:21px;
+    font-weight:700;
 }
 
-.history-top {
-    display: flex;
-    justify-content: space-between;
+.username{
+    color:#8995a7;
+    margin-top:4px;
 }
 
-.history-date {
-    font-size: 11px;
-    color: #7f8b9c;
-    margin-top: 5px;
+.row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid #303a49;
 }
-
-
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottom-nav {
-    position: fixed;
-
-    bottom: 0;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    max-width: 480px;
-    width: 100%;
-
-    height: 78px;
 
-    background: #171717;
-
-    display: grid;
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    z-index: 100;
+.row:last-child{
+    border-bottom:0;
 }
-
-.nav-item {
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    color: #777;
 
-    cursor: pointer;
-
-    position: relative;
+/* LEADERBOARD */
+.rank{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #303a49;
 }
 
-.nav-item.active {
-    color: white;
+/* NAV */
+.nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:76px;
+    background:#171717;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    z-index:99;
 }
-
-.nav-item.active::after {
-    content: "";
-
-    position: absolute;
 
-    bottom: 0;
-
-    width: 100%;
-    height: 4px;
-
-    background: #f59e0b;
+.navItem{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color:#777;
+    position:relative;
+    cursor:pointer;
 }
 
-.nav-icon {
-    font-size: 25px;
+.navItem.active{
+    color:#fff;
 }
 
-.nav-label {
-    font-size: 13px;
-    margin-top: 4px;
+.navItem.active:after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:4px;
+    background:#f59e0b;
 }
-
 
-/* =========================
-   FLOAT COIN
-========================= */
-
-.floatCoin {
-    position: fixed;
-
-    color: #fbbf24;
-
-    font-weight: bold;
-
-    pointer-events: none;
-
-    animation:
-        floatUp .7s forwards;
+.navIcon{
+    font-size:24px;
 }
-
-@keyframes floatUp {
 
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-80px);
-    }
+.navLabel{
+    font-size:12px;
+    margin-top:4px;
 }
-
-
-/* NOTICE */
 
-.notice {
-    color: #657184;
-
-    font-size: 10px;
-
-    text-align: center;
-
-    padding: 20px 10px;
+.noticeBottom{
+    text-align:center;
+    color:#667286;
+    font-size:10px;
+    padding:22px 8px;
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-
-<!-- =========================
-     TOP BALANCE
-========================= -->
-
+<!-- TOP -->
 <div class="top">
 
-    <div class="balance-card">
-
-        <div class="mini-label">
-            BALANCE
-        </div>
-
-        <div
-            class="mini-value"
-            id="topBalance"
-        >
-            $0.00
-        </div>
-
+    <div class="topCard">
+        <div class="label">BALANCE</div>
+        <div class="value" id="balance">$0.00</div>
     </div>
 
-
-    <div class="coin-card">
-
-        <div class="mini-label">
-            🪙 COINS
-        </div>
-
-        <div
-            class="mini-value"
-            id="topCoins"
-        >
-            0
-        </div>
-
+    <div class="topCard">
+        <div class="label">🪙 COINS</div>
+        <div class="value" id="coins">0</div>
     </div>
 
 </div>
 
 
+<!-- ================= GAME ================= -->
 
-<!-- ==================================
-     PAGE 1 : GAME
-================================== -->
+<div id="gamePage" class="page active">
 
-<div
-    id="gamePage"
-    class="page active"
->
-
-    <div class="game-header">
-
-        <div class="game-title">
-            🦊 FOXOPI
-        </div>
-
-        <div class="game-subtitle">
-            Game Center
-        </div>
-
+    <div class="gameTitle">
+        <h1>🦊 FOXOPI</h1>
+        <p>Tap & Game</p>
     </div>
 
-
-    <div class="fox-area">
+    <div class="foxWrap">
 
         <div
             id="fox"
-            class="fox-circle"
+            class="fox"
             onclick="tapFox(event)"
         >
             🦊
         </div>
 
-
         <div
             id="tapStatus"
-            class="tap-status locked-text"
+            class="tapStatus locked"
         >
-            🔒 Tap Locked
+            🔒 TAP LOCKED
         </div>
 
-
-        <div class="condition">
-            Tap unlocks after an approved $100 deposit.
+        <div class="smallText">
+            Approved $25 deposit required to unlock Tap & Task
         </div>
 
     </div>
 
+
+    <!-- LEVELS -->
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🪙 Tap Levels
+        </div>
+
+        <div class="level">
+            <span>
+                Level 1
+                <br>
+                <span class="smallText">
+                    0 – 100,000
+                </span>
+            </span>
+
+            <strong>
+                +1 / tap
+            </strong>
+        </div>
+
+        <div class="level">
+            <span>
+                Level 2
+                <br>
+                <span class="smallText">
+                    100,001 – 500,000
+                </span>
+            </span>
+
+            <strong>
+                +2 / tap
+            </strong>
+        </div>
+
+        <div class="level">
+            <span>
+                Level 3
+                <br>
+                <span class="smallText">
+                    500,001 – 1,000,000
+                </span>
+            </span>
+
+            <strong>
+                +4 / tap
+            </strong>
+        </div>
+
+        <div class="level">
+            <span>
+                Level 4
+                <br>
+                <span class="smallText">
+                    1,000,001+
+                </span>
+            </span>
+
+            <strong>
+                +8 / tap
+            </strong>
+        </div>
+
+        <div class="notice">
+            100,000 game coins = $25 simulation value
+        </div>
+
+    </div>
 
 
     <!-- SPIN -->
 
     <div class="card">
 
-        <div class="card-title">
+        <div class="cardTitle">
             🎡 Coin Spin
         </div>
 
+        <div class="spin">
 
-        <div class="spin-display">
-
-            <span id="slot1">
-                🦊
-            </span>
-
-            <span id="slot2">
-                🪙
-            </span>
-
-            <span id="slot3">
-                ⭐
-            </span>
+            <span id="s1">🦊</span>
+            <span id="s2">🪙</span>
+            <span id="s3">⭐</span>
 
         </div>
 
-
-        <div class="spin-info">
-
+        <div class="smallText" style="text-align:center">
             Uses game coins only.
-
-            <br>
-
-            Coins cannot be withdrawn
-            or exchanged for real money.
-
         </div>
-
 
         <button
-            class="full-button orange"
+            class="full orangeBtn"
             onclick="spinGame()"
         >
             🎡 Spin — 10 Coins
         </button>
 
-
         <div
             id="spinResult"
-            class="condition"
-            style="text-align:center;"
+            class="smallText"
+            style="text-align:center"
         ></div>
 
     </div>
@@ -685,36 +546,166 @@ input {
 </div>
 
 
+<!-- ================= TASK ================= -->
 
-<!-- ==================================
-     PAGE 2 : WALLET
-================================== -->
+<div id="taskPage" class="page">
 
-<div
-    id="walletPage"
-    class="page"
->
+    <div class="cardTitle">
+        🎯 Tasks
+    </div>
 
-    <div class="card-title">
+    <div id="taskLock" class="card">
+
+        <div class="cardTitle">
+            🔒 Tasks Locked
+        </div>
+
+        <div class="smallText">
+            Complete an approved $25 deposit to unlock tasks.
+        </div>
+
+    </div>
+
+    <div id="taskContent">
+
+        <div class="card">
+
+            <div class="cardTitle">
+                👥 Invite Friends
+            </div>
+
+            <div class="task">
+
+                <div class="taskRow">
+                    <span>1st friend</span>
+                    <strong>10,000 coins</strong>
+                </div>
+
+            </div>
+
+            <div class="task">
+
+                <div class="taskRow">
+                    <span>2nd friend</span>
+                    <strong>20,000 coins</strong>
+                </div>
+
+            </div>
+
+            <div class="task">
+
+                <div class="taskRow">
+                    <span>3rd friend</span>
+                    <strong>30,000 coins</strong>
+                </div>
+
+            </div>
+
+            <div class="task">
+
+                <div class="taskRow">
+                    <span>4th friend</span>
+                    <strong>50,000 coins</strong>
+                </div>
+
+            </div>
+
+            <div class="task">
+
+                <div class="taskRow">
+                    <span>5th friend</span>
+                    <strong>50,000 coins</strong>
+                </div>
+
+            </div>
+
+            <button
+                class="full purpleBtn"
+                onclick="inviteFriend()"
+            >
+                📤 Invite Friend
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="cardTitle">
+                📋 Admin Tasks
+            </div>
+
+            <div class="task">
+                YouTube Subscribe
+                <strong style="float:right">
+                    100,000
+                </strong>
+            </div>
+
+            <div class="task">
+                YouTube Like
+                <strong style="float:right">
+                    10,000
+                </strong>
+            </div>
+
+            <div class="task">
+                YouTube Comment
+                <strong style="float:right">
+                    10,000
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= BOSS ================= -->
+
+<div id="bossPage" class="page">
+
+    <div class="cardTitle">
+        🏆 Leaderboard
+    </div>
+
+    <div class="card">
+
+        <div class="smallText">
+            Top 10 players by game coins
+        </div>
+
+        <div id="leaderboard"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= WALLET ================= -->
+
+<div id="walletPage" class="page">
+
+    <div class="cardTitle">
         💳 Wallet
     </div>
 
-
-    <div class="wallet-tabs">
+    <div class="tabs">
 
         <button
             id="depositTab"
-            class="wallet-tab active"
-            onclick="openWallet('deposit')"
+            class="tab active"
+            onclick="walletTab('deposit')"
         >
             Deposit
         </button>
 
-
         <button
             id="withdrawTab"
-            class="wallet-tab"
-            onclick="openWallet('withdraw')"
+            class="tab"
+            onclick="walletTab('withdraw')"
         >
             Withdraw
         </button>
@@ -722,106 +713,97 @@ input {
     </div>
 
 
-
     <!-- DEPOSIT -->
 
     <div
         id="depositContent"
-        class="wallet-content active"
+        class="walletContent active"
     >
 
         <div class="card">
 
-            <div class="card-title">
-                Deposit
+            <div class="cardTitle">
+                ➕ Deposit Request
             </div>
 
-
-            <div class="muted">
+            <div class="smallText">
                 Address
             </div>
 
-
-            <div
-                class="address-box"
-                id="depositAddress"
-            >
-UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
+            <div class="address">
+                Deposit Address
             </div>
 
-
             <button
-                class="copy"
+                class="full grayBtn"
                 onclick="copyAddress()"
             >
                 📋 Copy Address
             </button>
 
-
             <input
                 id="depositAmount"
                 type="number"
-                placeholder="Amount"
+                min="25"
+                placeholder="Enter amount"
             >
 
-
             <button
-                class="full-button blue"
+                class="full blueBtn"
                 onclick="submitDeposit()"
             >
                 Submit Deposit Request
             </button>
 
-
             <div
-                id="depositMessage"
+                id="depositStatus"
             ></div>
 
+        </div>
 
-            <div class="condition">
+        <div class="card">
 
-                Balance will not change until
-                the request is approved.
+            🇧🇩 <strong>Bangladesh</strong>
 
+            <div class="smallText">
+                Deposit support: @foxopi
             </div>
+
+            <button
+                class="full grayBtn"
+                onclick="openSupport()"
+            >
+                💬 Contact @foxopi
+            </button>
 
         </div>
 
     </div>
 
 
-
     <!-- WITHDRAW -->
 
     <div
         id="withdrawContent"
-        class="wallet-content"
+        class="walletContent"
     >
 
         <div class="card">
 
-            <div class="card-title">
-                Withdraw
+            <div class="cardTitle">
+                ➖ Withdrawal
             </div>
 
-
-            <div class="status-box">
-
+            <div class="notice">
                 🔒 Withdrawal unlock date:
-
-                <strong>
-                    01/01/2027
-                </strong>
-
+                <strong>01/01/2027</strong>
             </div>
-
 
             <input
-                id="withdrawAccount"
+                id="withdrawTonkeeper"
                 type="text"
                 placeholder="Tonkeeper ID"
             >
-
 
             <input
                 id="withdrawAmount"
@@ -829,18 +811,16 @@ UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
                 placeholder="Amount"
             >
 
-
             <button
                 id="withdrawButton"
-                class="full-button red"
+                class="full redBtn"
                 onclick="submitWithdraw()"
             >
-                Submit Withdrawal
+                Locked Until 01/01/2027
             </button>
 
-
             <div
-                id="withdrawMessage"
+                id="withdrawStatus"
             ></div>
 
         </div>
@@ -850,34 +830,26 @@ UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
 </div>
 
 
+<!-- ================= PROFILE ================= -->
 
-<!-- ==================================
-     PAGE 3 : PROFILE
-================================== -->
+<div id="profilePage" class="page">
 
-<div
-    id="profilePage"
-    class="page"
->
-
-    <div class="profile-top">
+    <div class="profile">
 
         <div class="avatar">
             👤
         </div>
 
-
         <div
             id="profileName"
-            class="profile-name"
+            class="name"
         >
             FOXOPI User
         </div>
 
-
         <div
             id="profileUsername"
-            class="profile-username"
+            class="username"
         >
             @username
         </div>
@@ -885,1026 +857,530 @@ UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge
     </div>
 
 
-
     <div class="card">
 
         <div class="row">
-
-            <span class="muted">
-                Telegram ID
-            </span>
-
-            <strong id="profileId">
-                -
-            </strong>
-
+            <span>Telegram ID</span>
+            <strong id="profileId">-</strong>
         </div>
 
-
         <div class="row">
-
-            <span class="muted">
-                Balance
-            </span>
-
-            <strong id="profileBalance">
-                $0.00
-            </strong>
-
+            <span>Balance</span>
+            <strong id="profileBalance">$0.00</strong>
         </div>
 
-
         <div class="row">
-
-            <span class="muted">
-                Coins
-            </span>
-
-            <strong id="profileCoins">
-                0
-            </strong>
-
+            <span>Coins</span>
+            <strong id="profileCoins">0</strong>
         </div>
 
+        <div class="row">
+            <span>Coin Value</span>
+            <strong id="coinValue">$0.00</strong>
+        </div>
 
         <div class="row">
-
-            <span class="muted">
-                Approved Deposit
-            </span>
-
-            <strong id="approvedDeposit">
-                $0.00
-            </strong>
-
+            <span>Approved Deposit</span>
+            <strong id="approvedDeposit">$0.00</strong>
         </div>
 
     </div>
 
 
-
     <div class="card">
 
-        <div class="card-title">
-            📜 Account History
+        <div class="cardTitle">
+            📜 History
         </div>
 
-        <div id="historyList">
+        <div id="history">
             No activity yet.
         </div>
 
     </div>
 
-
-    <div class="notice">
-
-        Game coins are entertainment-only
-        and cannot be exchanged for cash
-        or cryptocurrency.
-
-    </div>
-
 </div>
 
 
+<div class="noticeBottom">
+    FOXOPI simulation interface. Game coins have no real-world cash value.
+</div>
 
-<!-- ==================================
-     BOTTOM NAVIGATION
-================================== -->
 
-<div class="bottom-nav">
+<!-- ================= NAV ================= -->
 
+<div class="nav">
 
     <div
         id="navGame"
-        class="nav-item active"
+        class="navItem active"
         onclick="openPage('game')"
     >
-
-        <div class="nav-icon">
-            ▦
-        </div>
-
-        <div class="nav-label">
-            Game
-        </div>
-
+        <div class="navIcon">▦</div>
+        <div class="navLabel">Tap</div>
     </div>
 
+    <div
+        id="navTask"
+        class="navItem"
+        onclick="openPage('task')"
+    >
+        <div class="navIcon">▤</div>
+        <div class="navLabel">Task</div>
+    </div>
 
+    <div
+        id="navBoss"
+        class="navItem"
+        onclick="openPage('boss')"
+    >
+        <div class="navIcon">🏆</div>
+        <div class="navLabel">Boss</div>
+    </div>
 
     <div
         id="navWallet"
-        class="nav-item"
+        class="navItem"
         onclick="openPage('wallet')"
     >
-
-        <div class="nav-icon">
-            ◉
-        </div>
-
-        <div class="nav-label">
-            Wallet
-        </div>
-
+        <div class="navIcon">◉</div>
+        <div class="navLabel">Wallet</div>
     </div>
-
-
-
-    <div
-        id="navProfile"
-        class="nav-item"
-        onclick="openPage('profile')"
-    >
-
-        <div class="nav-icon">
-            ♙
-        </div>
-
-        <div class="nav-label">
-            Profile
-        </div>
-
-    </div>
-
 
 </div>
 
 </div>
-
 
 
 <script>
 
-
-/* ==================================
-   CONFIG
-================================== */
-
-const BOT_USERNAME =
-    "Foxopi_bot";
-
-
-const DEPOSIT_ADDRESS =
-    "UQCX9DfVwAwa0Ie8IOQj0K3L-0Sv7Xw7yEhZrmEan4Mwypge";
-
-
-const WITHDRAW_DATE =
-    new Date(
-        "2027-01-01T00:00:00"
-    );
-
-
-const TAP_UNLOCK_DEPOSIT =
-    100;
-
-
-/*
-IMPORTANT:
-
-Game coins stay separate from
-the wallet balance.
-
-No cash conversion.
-*/
-
-const TAP_REWARD =
-    1;
-
-
-const SPIN_COST =
-    10;
-
-
-
-/* ==================================
-   TELEGRAM USER
-================================== */
+/* ======================================
+   TELEGRAM
+====================================== */
 
 const tg =
     window.Telegram &&
     window.Telegram.WebApp
-        ? window.Telegram.WebApp
-        : null;
+    ? window.Telegram.WebApp
+    : null;
 
-
-if (tg) {
-
+if(tg){
     tg.ready();
-
     tg.expand();
-
 }
 
 
+/* ======================================
+   USER
+====================================== */
 
-let telegramUser = null;
-
-
-if (
+const telegramUser =
     tg &&
     tg.initDataUnsafe &&
     tg.initDataUnsafe.user
-) {
-
-    telegramUser =
-        tg.initDataUnsafe.user;
-
-}
-
-
-
-/*
-Each Telegram user gets
-different local storage keys.
-*/
+    ? tg.initDataUnsafe.user
+    : null;
 
 const USER_ID =
     telegramUser
-        ? String(
-            telegramUser.id
-        )
-        : "guest";
+    ? String(telegramUser.id)
+    : "guest";
 
 
-const STORAGE_PREFIX =
+/*
+Each user's local data is separated.
+This is only for local simulation.
+*/
+
+const PREFIX =
     "foxopi_" +
     USER_ID +
     "_";
 
 
-
-/* ==================================
-   LOCAL DATA
-================================== */
+/* ======================================
+   DATA
+====================================== */
 
 let balance =
     Number(
         localStorage.getItem(
-            STORAGE_PREFIX +
-            "balance"
+            PREFIX + "balance"
         )
     ) || 0;
-
 
 let coins =
     Number(
         localStorage.getItem(
-            STORAGE_PREFIX +
-            "coins"
+            PREFIX + "coins"
         )
     ) || 0;
 
-
-let approvedDepositTotal =
+let approvedDeposit =
     Number(
         localStorage.getItem(
-            STORAGE_PREFIX +
-            "approvedDeposit"
+            PREFIX + "approvedDeposit"
         )
     ) || 0;
-
-
-let depositRequests =
-    JSON.parse(
-        localStorage.getItem(
-            STORAGE_PREFIX +
-            "depositRequests"
-        )
-    ) || [];
-
-
-let withdrawRequests =
-    JSON.parse(
-        localStorage.getItem(
-            STORAGE_PREFIX +
-            "withdrawRequests"
-        )
-    ) || [];
-
 
 let history =
     JSON.parse(
         localStorage.getItem(
-            STORAGE_PREFIX +
-            "history"
+            PREFIX + "history"
         )
     ) || [];
 
 
+/*
+Simulation:
+admin approval must set approvedDeposit.
+*/
 
-/* ==================================
+let tapUnlocked =
+    approvedDeposit >= 25;
+
+
+/* ======================================
    SAVE
-================================== */
+====================================== */
 
-function saveAll() {
+function save(){
 
     localStorage.setItem(
-        STORAGE_PREFIX +
-        "balance",
+        PREFIX + "balance",
         balance
     );
 
-
     localStorage.setItem(
-        STORAGE_PREFIX +
-        "coins",
+        PREFIX + "coins",
         coins
     );
 
-
     localStorage.setItem(
-        STORAGE_PREFIX +
-        "approvedDeposit",
-        approvedDepositTotal
+        PREFIX + "approvedDeposit",
+        approvedDeposit
     );
 
-
     localStorage.setItem(
-        STORAGE_PREFIX +
-        "depositRequests",
-        JSON.stringify(
-            depositRequests
-        )
+        PREFIX + "history",
+        JSON.stringify(history)
     );
-
-
-    localStorage.setItem(
-        STORAGE_PREFIX +
-        "withdrawRequests",
-        JSON.stringify(
-            withdrawRequests
-        )
-    );
-
-
-    localStorage.setItem(
-        STORAGE_PREFIX +
-        "history",
-        JSON.stringify(
-            history
-        )
-    );
-
 
     updateUI();
-
 }
 
 
+/* ======================================
+   UI
+====================================== */
 
-/* ==================================
-   UI UPDATE
-================================== */
+function updateUI(){
 
-function updateUI() {
+    document.getElementById(
+        "balance"
+    ).innerText =
+        "$" + balance.toFixed(2);
 
-    const balanceText =
+
+    document.getElementById(
+        "coins"
+    ).innerText =
+        coins.toLocaleString();
+
+
+    document.getElementById(
+        "profileBalance"
+    ).innerText =
+        "$" + balance.toFixed(2);
+
+
+    document.getElementById(
+        "profileCoins"
+    ).innerText =
+        coins.toLocaleString();
+
+
+    document.getElementById(
+        "coinValue"
+    ).innerText =
         "$" +
-        balance.toFixed(2);
+        (
+            coins * 0.00025
+        ).toFixed(2);
 
 
-    document
-        .getElementById(
-            "topBalance"
-        )
-        .innerText =
-            balanceText;
+    document.getElementById(
+        "approvedDeposit"
+    ).innerText =
+        "$" +
+        approvedDeposit.toFixed(2);
 
 
-    document
-        .getElementById(
-            "topCoins"
-        )
-        .innerText =
-            coins.toLocaleString();
-
-
-    document
-        .getElementById(
-            "profileBalance"
-        )
-        .innerText =
-            balanceText;
-
-
-    document
-        .getElementById(
-            "profileCoins"
-        )
-        .innerText =
-            coins.toLocaleString();
-
-
-    document
-        .getElementById(
-            "approvedDeposit"
-        )
-        .innerText =
-            "$" +
-            approvedDepositTotal
-                .toFixed(2);
-
-
-    updateTapStatus();
+    updateTap();
 
     updateProfile();
 
     renderHistory();
 
-    updateWithdrawLock();
+    renderLeaderboard();
 
 }
 
 
-
-/* ==================================
+/* ======================================
    PROFILE
-================================== */
+====================================== */
 
-function updateProfile() {
+function updateProfile(){
 
-    if (!telegramUser) {
+    if(!telegramUser){
 
-        document
-            .getElementById(
-                "profileName"
-            )
-            .innerText =
-                "FOXOPI User";
+        document.getElementById(
+            "profileName"
+        ).innerText =
+            "FOXOPI User";
 
+        document.getElementById(
+            "profileUsername"
+        ).innerText =
+            "@foxopi_bot";
 
-        document
-            .getElementById(
-                "profileUsername"
-            )
-            .innerText =
-                "Open inside Telegram";
-
-
-        document
-            .getElementById(
-                "profileId"
-            )
-            .innerText =
-                "Guest";
-
+        document.getElementById(
+            "profileId"
+        ).innerText =
+            "Guest";
 
         return;
-
     }
 
 
-    const name =
-
-        (
-            telegramUser.first_name ||
-            ""
-        ) +
-
+    let name =
+        (telegramUser.first_name || "") +
         (
             telegramUser.last_name
-                ? " " +
-                  telegramUser.last_name
-                : ""
+            ? " " +
+              telegramUser.last_name
+            : ""
         );
 
 
-    document
-        .getElementById(
-            "profileName"
-        )
-        .innerText =
-            name;
+    document.getElementById(
+        "profileName"
+    ).innerText =
+        name || "FOXOPI User";
 
 
-    document
-        .getElementById(
-            "profileUsername"
-        )
-        .innerText =
-
-            telegramUser.username
-                ? "@" +
-                  telegramUser.username
-                : "No username";
+    document.getElementById(
+        "profileUsername"
+    ).innerText =
+        telegramUser.username
+        ? "@" + telegramUser.username
+        : "No username";
 
 
-    document
-        .getElementById(
-            "profileId"
-        )
-        .innerText =
-            telegramUser.id;
+    document.getElementById(
+        "profileId"
+    ).innerText =
+        telegramUser.id;
 
 }
 
 
-
-/* ==================================
-   NAVIGATION
-================================== */
-
-function openPage(page) {
-
-    const pages = {
-
-        game:
-            "gamePage",
-
-        wallet:
-            "walletPage",
-
-        profile:
-            "profilePage"
-
-    };
-
-
-    Object.values(
-        pages
-    )
-    .forEach(
-        function(id) {
-
-            document
-                .getElementById(id)
-                .classList
-                .remove(
-                    "active"
-                );
-
-        }
-    );
-
-
-    document
-        .getElementById(
-            pages[page]
-        )
-        .classList
-        .add(
-            "active"
-        );
-
-
-    document
-        .querySelectorAll(
-            ".nav-item"
-        )
-        .forEach(
-            function(item) {
-
-                item
-                    .classList
-                    .remove(
-                        "active"
-                    );
-
-            }
-        );
-
-
-    if (
-        page ===
-        "game"
-    ) {
-
-        document
-            .getElementById(
-                "navGame"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-    }
-
-
-    if (
-        page ===
-        "wallet"
-    ) {
-
-        document
-            .getElementById(
-                "navWallet"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-    }
-
-
-    if (
-        page ===
-        "profile"
-    ) {
-
-        document
-            .getElementById(
-                "navProfile"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-    }
-
-}
-
-
-
-/* ==================================
-   WALLET TABS
-================================== */
-
-function openWallet(type) {
-
-    document
-        .getElementById(
-            "depositContent"
-        )
-        .classList
-        .remove(
-            "active"
-        );
-
-
-    document
-        .getElementById(
-            "withdrawContent"
-        )
-        .classList
-        .remove(
-            "active"
-        );
-
-
-    document
-        .getElementById(
-            "depositTab"
-        )
-        .classList
-        .remove(
-            "active"
-        );
-
-
-    document
-        .getElementById(
-            "withdrawTab"
-        )
-        .classList
-        .remove(
-            "active"
-        );
-
-
-    if (
-        type ===
-        "deposit"
-    ) {
-
-        document
-            .getElementById(
-                "depositContent"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-
-        document
-            .getElementById(
-                "depositTab"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-    } else {
-
-        document
-            .getElementById(
-                "withdrawContent"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-
-        document
-            .getElementById(
-                "withdrawTab"
-            )
-            .classList
-            .add(
-                "active"
-            );
-
-    }
-
-}
-
-
-
-/* ==================================
-   COPY ADDRESS
-================================== */
-
-function copyAddress() {
-
-    navigator
-        .clipboard
-        .writeText(
-            DEPOSIT_ADDRESS
-        )
-        .then(
-            function() {
-
-                alert(
-                    "Address copied."
-                );
-
-            }
-        );
-
-}
-
-
-
-/* ==================================
-   DEPOSIT REQUEST
-================================== */
-
-function submitDeposit() {
-
-    const amount =
-        Number(
-            document
-                .getElementById(
-                    "depositAmount"
-                )
-                .value
-        );
-
-
-    if (
-        !amount ||
-        amount <= 0
-    ) {
-
-        alert(
-            "Enter a valid amount."
-        );
-
-        return;
-
-    }
-
-
-    const request = {
-
-        id:
-            Date.now(),
-
-        amount:
-            amount,
-
-        status:
-            "Pending",
-
-        date:
-            new Date()
-                .toLocaleString()
-
-    };
-
-
-    depositRequests
-        .unshift(
-            request
-        );
-
-
-    addHistory(
-
-        "Deposit Request",
-
-        "$" +
-        amount.toFixed(2),
-
-        "Pending"
-
-    );
-
-
-    document
-        .getElementById(
-            "depositMessage"
-        )
-        .innerHTML =
-
-        "<div class='status-box pending'>" +
-
-        "⏳ Deposit request submitted.<br>" +
-
-        "Status: <strong>Pending</strong><br><br>" +
-
-        "Balance will update only after approval." +
-
-        "</div>";
-
-
-    document
-        .getElementById(
-            "depositAmount"
-        )
-        .value =
-            "";
-
-
-    saveAll();
-
-}
-
-
-
-/* ==================================
-   TAP SYSTEM
-================================== */
-
-function tapUnlocked() {
-
-    return (
-        approvedDepositTotal >=
-        TAP_UNLOCK_DEPOSIT
-    );
-
-}
-
-
-
-function updateTapStatus() {
+/* ======================================
+   TAP STATUS
+====================================== */
+
+function updateTap(){
 
     const fox =
-        document
-            .getElementById(
-                "fox"
-            );
-
+        document.getElementById("fox");
 
     const status =
-        document
-            .getElementById(
-                "tapStatus"
-            );
+        document.getElementById("tapStatus");
 
 
-    if (
-        tapUnlocked()
-    ) {
+    if(tapUnlocked){
 
-        fox.classList
-            .add(
-                "unlocked"
-            );
-
+        fox.classList.add("unlocked");
 
         status.className =
-            "tap-status unlocked-text";
-
+            "tapStatus unlocked";
 
         status.innerText =
-            "✅ Tap Unlocked — +1 Coin";
+            "✅ TAP UNLOCKED";
 
-    } else {
+    }else{
 
-        fox.classList
-            .remove(
-                "unlocked"
-            );
-
+        fox.classList.remove("unlocked");
 
         status.className =
-            "tap-status locked-text";
-
+            "tapStatus locked";
 
         status.innerText =
-            "🔒 Tap Locked";
+            "🔒 TAP LOCKED";
 
     }
+
+
+    /*
+    Task lock follows same rule.
+    */
+
+    document.getElementById(
+        "taskLock"
+    ).style.display =
+        tapUnlocked
+        ? "none"
+        : "block";
+
+
+    document.getElementById(
+        "taskContent"
+    ).style.display =
+        tapUnlocked
+        ? "block"
+        : "none";
 
 }
 
 
+/* ======================================
+   TAP
+====================================== */
 
-function tapFox(event) {
+function tapFox(event){
 
-    if (
-        !tapUnlocked()
-    ) {
+    if(!tapUnlocked){
 
         alert(
-            "Tap unlocks after an approved $100 deposit."
+            "Tap unlocks after an approved $25 deposit."
         );
 
         return;
+    }
+
+
+    let reward = 1;
+
+
+    if(coins > 100000){
+
+        reward = 2;
+
+    }
+
+    if(coins > 500000){
+
+        reward = 4;
+
+    }
+
+    if(coins > 1000000){
+
+        reward = 8;
 
     }
 
 
-    coins +=
-        TAP_REWARD;
+    coins += reward;
 
 
-    const float =
-        document
-            .createElement(
-                "div"
-            );
-
-
-    float.className =
-        "floatCoin";
-
-
-    float.innerText =
-        "+1 🪙";
-
-
-    float.style.left =
-        event.clientX +
-        "px";
-
-
-    float.style.top =
-        event.clientY +
-        "px";
-
-
-    document.body
-        .appendChild(
-            float
-        );
-
-
-    setTimeout(
-        function() {
-
-            float.remove();
-
-        },
-        700
+    showFloating(
+        event,
+        "+" + reward + " 🪙"
     );
 
 
-    saveAll();
+    save();
 
 }
 
 
+/* ======================================
+   FLOAT
+====================================== */
 
-/* ==================================
-   SPIN GAME
-================================== */
+function showFloating(
+    event,
+    text
+){
 
-function spinGame() {
+    const x =
+        document.createElement(
+            "div"
+        );
 
-    if (
-        coins <
-        SPIN_COST
-    ) {
+    x.innerText = text;
+
+    x.style.position = "fixed";
+    x.style.left =
+        event.clientX + "px";
+    x.style.top =
+        event.clientY + "px";
+
+    x.style.color =
+        "#fbbf24";
+
+    x.style.fontWeight =
+        "bold";
+
+    x.style.pointerEvents =
+        "none";
+
+    x.style.transition =
+        "all .7s";
+
+    document.body.appendChild(x);
+
+    setTimeout(
+        function(){
+
+            x.style.transform =
+                "translateY(-70px)";
+
+            x.style.opacity = "0";
+
+        },
+        10
+    );
+
+    setTimeout(
+        function(){
+
+            x.remove();
+
+        },
+        750
+    );
+
+}
+
+
+/* ======================================
+   SPIN
+====================================== */
+
+function spinGame(){
+
+    if(coins < 10){
 
         alert(
-            "You need at least 10 game coins."
+            "You need 10 game coins."
         );
 
         return;
-
     }
 
 
-    coins -=
-        SPIN_COST;
+    coins -= 10;
 
 
     const symbols = [
-
         "🦊",
         "🪙",
         "⭐",
         "🍀",
         "💎"
-
     ];
 
 
@@ -1916,7 +1392,6 @@ function spinGame() {
             )
         ];
 
-
     const b =
         symbols[
             Math.floor(
@@ -1924,7 +1399,6 @@ function spinGame() {
                 symbols.length
             )
         ];
-
 
     const c =
         symbols[
@@ -1935,132 +1409,321 @@ function spinGame() {
         ];
 
 
-    document
-        .getElementById(
-            "slot1"
-        )
-        .innerText =
-            a;
+    document.getElementById(
+        "s1"
+    ).innerText = a;
+
+    document.getElementById(
+        "s2"
+    ).innerText = b;
+
+    document.getElementById(
+        "s3"
+    ).innerText = c;
 
 
-    document
-        .getElementById(
-            "slot2"
-        )
-        .innerText =
-            b;
+    let reward = 0;
 
 
-    document
-        .getElementById(
-            "slot3"
-        )
-        .innerText =
-            c;
+    if(a === b && b === c){
 
+        reward = 100;
 
-    let reward =
-        0;
-
-
-    /*
-    Entertainment-only coin reward.
-    No real-money value.
-    */
-
-    if (
-        a === b &&
-        b === c
-    ) {
-
-        reward =
-            100;
-
-    } else if (
+    }else if(
         a === b ||
         b === c ||
         a === c
-    ) {
+    ){
 
-        reward =
-            20;
-
-    }
-
-
-    coins +=
-        reward;
-
-
-    const result =
-        document
-            .getElementById(
-                "spinResult"
-            );
-
-
-    if (
-        reward >
-        0
-    ) {
-
-        result.innerText =
-            "🎉 +" +
-            reward +
-            " game coins";
-
-    } else {
-
-        result.innerText =
-            "Try again!";
+        reward = 20;
 
     }
 
 
-    saveAll();
+    coins += reward;
+
+
+    document.getElementById(
+        "spinResult"
+    ).innerText =
+        reward
+        ? "🎉 +" + reward +
+          " game coins"
+        : "Try again";
+
+
+    save();
 
 }
 
 
+/* ======================================
+   PAGES
+====================================== */
 
-/* ==================================
-   WITHDRAW
-================================== */
+function openPage(page){
 
-function updateWithdrawLock() {
+    const pages = [
+        "game",
+        "task",
+        "boss",
+        "wallet"
+    ];
 
-    const button =
-        document
-            .getElementById(
-                "withdrawButton"
+
+    pages.forEach(
+        function(p){
+
+            document.getElementById(
+                p + "Page"
+            ).classList.remove(
+                "active"
             );
 
+            document.getElementById(
+                "nav" +
+                p.charAt(0).toUpperCase() +
+                p.slice(1)
+            ).classList.remove(
+                "active"
+            );
 
-    if (
-        new Date() <
-        WITHDRAW_DATE
-    ) {
-
-        button.disabled =
-            true;
+        }
+    );
 
 
-        button.style.opacity =
-            ".45";
+    document.getElementById(
+        page + "Page"
+    ).classList.add(
+        "active"
+    );
 
+
+    document.getElementById(
+        "nav" +
+        page.charAt(0).toUpperCase() +
+        page.slice(1)
+    ).classList.add(
+        "active"
+    );
+
+}
+
+
+/* ======================================
+   TASK REFERRAL
+====================================== */
+
+function inviteFriend(){
+
+    if(!tapUnlocked){
+
+        alert(
+            "Invite rewards unlock after an approved $25 deposit."
+        );
+
+        return;
+    }
+
+
+    if(!telegramUser){
+
+        alert(
+            "Open the app inside Telegram."
+        );
+
+        return;
+    }
+
+
+    const referral =
+        "https://t.me/foxopi_bot?start=ref_" +
+        telegramUser.id;
+
+
+    const share =
+        "https://t.me/share/url?url=" +
+        encodeURIComponent(
+            referral
+        ) +
+        "&text=" +
+        encodeURIComponent(
+            "Join FOXOPI"
+        );
+
+
+    if(tg && tg.openTelegramLink){
+
+        tg.openTelegramLink(
+            share
+        );
+
+    }else{
+
+        window.open(
+            share,
+            "_blank"
+        );
+
+    }
+
+}
+
+
+/* ======================================
+   WALLET TABS
+====================================== */
+
+function walletTab(type){
+
+    document.getElementById(
+        "depositContent"
+    ).classList.remove(
+        "active"
+    );
+
+    document.getElementById(
+        "withdrawContent"
+    ).classList.remove(
+        "active"
+    );
+
+    document.getElementById(
+        "depositTab"
+    ).classList.remove(
+        "active"
+    );
+
+    document.getElementById(
+        "withdrawTab"
+    ).classList.remove(
+        "active"
+    );
+
+
+    if(type === "deposit"){
+
+        document.getElementById(
+            "depositContent"
+        ).classList.add(
+            "active"
+        );
+
+        document.getElementById(
+            "depositTab"
+        ).classList.add(
+            "active"
+        );
+
+    }else{
+
+        document.getElementById(
+            "withdrawContent"
+        ).classList.add(
+            "active"
+        );
+
+        document.getElementById(
+            "withdrawTab"
+        ).classList.add(
+            "active"
+        );
+
+        checkWithdraw();
+
+    }
+
+}
+
+
+/* ======================================
+   DEPOSIT
+====================================== */
+
+function copyAddress(){
+
+    alert(
+        "Deposit address copy is available when a backend payment address is configured."
+    );
+
+}
+
+
+function submitDeposit(){
+
+    const amount =
+        Number(
+            document.getElementById(
+                "depositAmount"
+            ).value
+        );
+
+
+    if(!amount || amount < 25){
+
+        alert(
+            "Minimum deposit is $25."
+        );
+
+        return;
+    }
+
+
+    /*
+    Simulation:
+    Does NOT increase balance.
+    */
+
+    document.getElementById(
+        "depositStatus"
+    ).innerHTML =
+
+        "<div class='status'>" +
+        "⏳ Deposit request submitted." +
+        "<br><br>" +
+        "Status: <strong>Pending</strong>" +
+        "<br>" +
+        "Balance will update only after admin approval." +
+        "</div>";
+
+
+    addHistory(
+        "Deposit Request",
+        "$" + amount.toFixed(2),
+        "Pending"
+    );
+
+}
+
+
+/* ======================================
+   WITHDRAW
+====================================== */
+
+function checkWithdraw(){
+
+    const unlock =
+        new Date(
+            "2027-01-01T00:00:00"
+        );
+
+
+    const button =
+        document.getElementById(
+            "withdrawButton"
+        );
+
+
+    if(new Date() < unlock){
+
+        button.disabled = true;
 
         button.innerText =
             "Locked Until 01/01/2027";
 
-    } else {
+    }else{
 
-        button.disabled =
-            false;
-
-
-        button.style.opacity =
-            "1";
-
+        button.disabled = false;
 
         button.innerText =
             "Submit Withdrawal";
@@ -2070,174 +1733,135 @@ function updateWithdrawLock() {
 }
 
 
+function submitWithdraw(){
 
-function submitWithdraw() {
+    const unlock =
+        new Date(
+            "2027-01-01T00:00:00"
+        );
 
-    if (
-        new Date() <
-        WITHDRAW_DATE
-    ) {
+
+    if(new Date() < unlock){
 
         alert(
-            "Withdrawals unlock on 01/01/2027."
+            "Withdrawal opens on 01/01/2027."
         );
 
         return;
-
     }
 
 
-    const account =
-        document
-            .getElementById(
-                "withdrawAccount"
-            )
-            .value
-            .trim();
+    const id =
+        document.getElementById(
+            "withdrawTonkeeper"
+        ).value.trim();
 
 
     const amount =
         Number(
-            document
-                .getElementById(
-                    "withdrawAmount"
-                )
-                .value
+            document.getElementById(
+                "withdrawAmount"
+            ).value
         );
 
 
-    if (
-        !account
-    ) {
+    if(!id){
 
         alert(
             "Enter Tonkeeper ID."
         );
 
         return;
-
     }
 
 
-    if (
-        !amount ||
-        amount <= 0
-    ) {
+    if(!amount || amount <= 0){
 
         alert(
             "Enter a valid amount."
         );
 
         return;
-
     }
 
 
-    if (
-        amount >
-        balance
-    ) {
+    if(amount > balance){
 
         alert(
             "Insufficient balance."
         );
 
         return;
-
     }
 
 
-    withdrawRequests.unshift({
+    document.getElementById(
+        "withdrawStatus"
+    ).innerHTML =
 
-        id:
-            Date.now(),
-
-        amount:
-            amount,
-
-        status:
-            "Pending",
-
-        date:
-            new Date()
-                .toLocaleString()
-
-    });
-
-
-    addHistory(
-
-        "Withdrawal Request",
-
-        "$" +
-        amount.toFixed(2),
-
-        "Pending"
-
-    );
-
-
-    document
-        .getElementById(
-            "withdrawMessage"
-        )
-        .innerHTML =
-
-        "<div class='status-box pending'>" +
-
-        "⏳ Request submitted.<br>" +
-
-        "Please wait while it is reviewed." +
-
+        "<div class='status'>" +
+        "⏳ Withdrawal request submitted." +
+        "<br><br>" +
+        "Status: <strong>Pending</strong>" +
+        "<br>" +
+        "Please wait for review." +
         "</div>";
 
 
-    document
-        .getElementById(
-            "withdrawAccount"
-        )
-        .value =
-            "";
-
-
-    document
-        .getElementById(
-            "withdrawAmount"
-        )
-        .value =
-            "";
-
-
-    saveAll();
+    addHistory(
+        "Withdrawal Request",
+        "$" + amount.toFixed(2),
+        "Pending"
+    );
 
 }
 
 
+/* ======================================
+   SUPPORT
+====================================== */
 
-/* ==================================
+function openSupport(){
+
+    if(tg && tg.openTelegramLink){
+
+        tg.openTelegramLink(
+            "https://t.me/foxopi"
+        );
+
+    }else{
+
+        window.open(
+            "https://t.me/foxopi",
+            "_blank"
+        );
+
+    }
+
+}
+
+
+/* ======================================
    HISTORY
-================================== */
+====================================== */
 
 function addHistory(
     title,
     amount,
     status
-) {
+){
 
     history.unshift({
 
-        title:
-            title,
+        title:title,
 
-        amount:
-            amount,
+        amount:amount,
 
-        status:
-            status,
+        status:status,
 
         date:
             new Date()
-                .toLocaleString()
+            .toLocaleString()
 
     });
 
@@ -2248,73 +1872,60 @@ function addHistory(
             50
         );
 
+
+    save();
+
 }
 
 
-
-function renderHistory() {
+function renderHistory(){
 
     const box =
-        document
-            .getElementById(
-                "historyList"
-            );
+        document.getElementById(
+            "history"
+        );
 
 
-    if (
-        history.length ===
-        0
-    ) {
+    if(!history.length){
 
         box.innerHTML =
             "No activity yet.";
 
         return;
-
     }
 
 
-    box.innerHTML =
-        "";
+    box.innerHTML = "";
 
 
     history.forEach(
-        function(item) {
+        function(item){
 
             const div =
-                document
-                    .createElement(
-                        "div"
-                    );
+                document.createElement(
+                    "div"
+                );
 
 
             div.className =
-                "history-item";
+                "row";
 
 
             div.innerHTML =
 
-                "<div class='history-top'>" +
-
-                "<strong>" +
-                item.title +
-                "</strong>" +
-
                 "<span>" +
-                item.amount +
+                item.title +
+                "<br>" +
+                "<small class='smallText'>" +
+                item.date +
+                " • " +
+                item.status +
+                "</small>" +
                 "</span>" +
 
-                "</div>" +
-
-                "<div class='history-date'>" +
-
-                item.date +
-
-                " • " +
-
-                item.status +
-
-                "</div>";
+                "<strong>" +
+                item.amount +
+                "</strong>";
 
 
             box.appendChild(
@@ -2327,12 +1938,135 @@ function renderHistory() {
 }
 
 
+/* ======================================
+   LEADERBOARD
+====================================== */
 
-/* ==================================
+function renderLeaderboard(){
+
+    const box =
+        document.getElementById(
+            "leaderboard"
+        );
+
+
+    /*
+    Local demo leaderboard only.
+    */
+
+    let players = JSON.parse(
+        localStorage.getItem(
+            "foxopi_demo_leaderboard"
+        )
+    ) || [];
+
+
+    const existing =
+        players.find(
+            function(p){
+                return p.id === USER_ID;
+            }
+        );
+
+
+    if(existing){
+
+        existing.coins =
+            coins;
+
+    }else{
+
+        players.push({
+
+            id:USER_ID,
+
+            name:
+                telegramUser
+                ? (
+                    telegramUser.username ||
+                    telegramUser.first_name ||
+                    "You"
+                  )
+                : "You",
+
+            coins:coins
+
+        });
+
+    }
+
+
+    players.sort(
+        function(a,b){
+            return b.coins - a.coins;
+        }
+    );
+
+
+    players =
+        players.slice(
+            0,
+            10
+        );
+
+
+    localStorage.setItem(
+        "foxopi_demo_leaderboard",
+        JSON.stringify(players)
+    );
+
+
+    box.innerHTML = "";
+
+
+    players.forEach(
+        function(p,index){
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "rank";
+
+
+            div.innerHTML =
+
+                "<span>" +
+
+                (index + 1) +
+                ". " +
+                p.name +
+
+                "</span>" +
+
+                "<strong>" +
+
+                Number(
+                    p.coins
+                ).toLocaleString() +
+
+                "</strong>";
+
+
+            box.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* ======================================
    START
-================================== */
+====================================== */
 
 updateUI();
+
+checkWithdraw();
 
 </script>
 
